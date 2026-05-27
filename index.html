@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Психологічне дослідження</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;background:#f9f9f7;padding:0 0 3rem;min-height:100vh}
+input,button{font-family:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:22px;font-weight:500;line-height:1.35;margin-bottom:8px}
+h2{font-size:20px;font-weight:500;line-height:1.35;margin-bottom:6px}
+.sub{font-size:14px;color:#555;line-height:1.65;margin-bottom:20px}
+.ibox{background:#f1efe8;border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.ibox p{font-size:14px;color:#555;line-height:1.75;margin-bottom:8px}
+.ibox p:last-child{margin-bottom:0}
+.note{background:#f1efe8;border-radius:8px;padding:11px 14px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.65;border-left:3px solid #378add}
+.ccb{display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:13px 15px;border:0.5px solid #b4b2a9;border-radius:12px;margin-bottom:20px;transition:background .15s}
+.ccb.on{background:#eaf3de;border-color:#639922}
+.ccb input{margin-top:2px;flex-shrink:0;accent-color:#639922;width:16px;height:16px;cursor:pointer}
+.ccb span{font-size:14px;line-height:1.6}
+.nav{display:flex;gap:10px;margin-top:16px}
+.bb{padding:10px 16px;border:0.5px solid #b4b2a9;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:transparent;color:#5f5e5a;transition:all .15s;display:flex;align-items:center;gap:6px}
+.bb:hover{background:#f1efe8}
+.nb{flex:1;padding:11px 20px;border:0.5px solid #b4b2a9;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:#2c2c2a;color:#f9f9f7;transition:all .15s}
+.nb:hover{opacity:.85}
+.nb:disabled{background:#f1efe8;color:#b4b2a9;cursor:not-allowed}
+.field{margin-bottom:20px}
+.fl{display:block;font-size:14px;font-weight:500;margin-bottom:8px}
+.req{color:#a32d2d;margin-left:2px}
+.ropts{display:flex;flex-direction:column;gap:6px}
+.ropt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;font-size:14px;color:#1a1a1a;transition:all .12s}
+.ropt.on{border-color:#185fa5;background:#e6f1fb;color:#0c447c}
+.ropt.bad{border-color:#a32d2d}
+.ropt input{accent-color:#185fa5;flex-shrink:0;cursor:pointer}
+.ferr{color:#a32d2d;font-size:12px;margin-top:4px}
+.berr{color:#a32d2d;font-size:13px;margin-bottom:14px;padding:10px 12px;background:#fcebeb;border-radius:8px}
+.qcard{margin-bottom:14px;padding:15px;border:0.5px solid #d3d1c7;border-radius:12px;background:#fff}
+.qcard.bad{border-color:#a32d2d}
+.qnum{font-size:11px;color:#888780;margin-bottom:3px;font-weight:500;letter-spacing:.02em}
+.qtext{font-size:14px;line-height:1.65;margin-bottom:11px;color:#1a1a1a}
+.srow{display:flex;gap:4px;margin-bottom:5px}
+.sbtn{flex:1;padding:9px 2px;border:0.5px solid #b4b2a9;border-radius:8px;background:transparent;font-size:14px;cursor:pointer;color:#5f5e5a;transition:all .12s;min-width:26px}
+.sbtn.on{border-color:#185fa5;background:#e6f1fb;color:#0c447c;font-weight:500}
+.slabs{display:flex;justify-content:space-between}
+.slabs span{font-size:11px;color:#888780;max-width:48%;line-height:1.3}
+.slabs span:last-child{text-align:right}
+.qerr{color:#a32d2d;font-size:12px;margin-top:5px}
+.end{max-width:500px;margin:2rem auto;padding:2rem;text-align:center}
+.eicon{font-size:48px;margin-bottom:16px}
+.end h2{font-size:20px;font-weight:500;margin-bottom:12px}
+.end p{color:#555;line-height:1.7;font-size:15px;margin-bottom:20px}
+.rbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:0.5px solid #b4b2a9;border-radius:8px;background:#2c2c2a;color:#f9f9f7;font-size:14px;font-weight:500;cursor:pointer;transition:opacity .15s}
+.rbtn:hover{opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+// ════════════════════════════════════════════
+//  КОНФІГУРАЦІЯ — редагуйте тут
+// ════════════════════════════════════════════
+const C = {
+  title: "Психологічне дослідження",
+  scriptUrl: "https://script.google.com/macros/s/AKfycbzFjY129uoYg0RIn-rhQUuLcgBW8vkEYt3WorfwmarnCWg1LLM8ZRQewvOAVlmmjGPx/exec",
+  resourceUrl: "https://equable-carpet-f05.notion.site/36d0e7d5a9438089ba92c9a4f3057f47?source=copy_link",
+  resourceText: "Перейти до корисних ресурсів",
+  allowedAge: "18 – 29",
+
+  ages:["до 18","18 – 29","30 – 45","46 – 60","61 і старше"],
+  genders:["Жінка","Чоловік","Небінарна / інша гендерна ідентичність"],
+  educations:["Профтехосвіта / коледж","Бакалавр","Магістр","Аспірантура / докторантура","Інше"],
+  employments:["Працевлаштований(на)","Самозайнятий(на)","Студент(ка)","Інше"],
+  psychHelps:["Так, раніше","Так, зараз перебуваю в процесі консультування / терапії","Ні, ніколи","Інше"],
+
+  steps:["info","consent","demo","tipi","k10","wemwbs","done"],
+  stepLabels:["Інформація","Згода","Про вас","TIPI","K10","WEMWBS","Завершено"],
+
+  tipi:{
+    instruction:"Нижче наведено перелік якостей, які можуть бути або не бути характерними для Вас. Оцініть, в якій мірі запропонована пара характеристик стосується Вас особисто, навіть якщо одна підходить більше, аніж друга.",
+    prefix:"Бачу себе як людину, яка є",
+    scaleLabels:["Абсолютно не погоджуюсь","Абсолютно погоджуюсь"],
+    max:7,
+    items:[
+      {id:"tipi_1", text:"Товариська, активна",                       R:false},
+      {id:"tipi_2", text:"Критична, конфліктна",                      R:true},
+      {id:"tipi_3", text:"Сумлінна, дисциплінована",                  R:false},
+      {id:"tipi_4", text:"Тривожна, схильна перейматися",             R:true},
+      {id:"tipi_5", text:"Відкрита до нового, різностороння",         R:false},
+      {id:"tipi_6", text:"Стримана, тиха",                            R:true},
+      {id:"tipi_7", text:"Тактовна, співчутлива, приязна",            R:false},
+      {id:"tipi_8", text:"Неорганізована, легковажна",                R:true},
+      {id:"tipi_9", text:"Спокійна, емоційно стабільна",              R:false},
+      {id:"tipi_10",text:"Не любить змін і пошуку нових рішень",      R:true},
+    ],
+    // Ключ: пункти з * рахуються у зворотному порядку (8 - бал)
+    subscales:{
+      "Екстраверсія":              {items:["tipi_1","tipi_6"],  rev:["tipi_6"]},
+      "Дружелюбність":             {items:["tipi_2","tipi_7"],  rev:["tipi_2"]},
+      "Добросовісність":           {items:["tipi_3","tipi_8"],  rev:["tipi_8"]},
+      "Емоційна_стабільність":     {items:["tipi_4","tipi_9"],  rev:["tipi_4"]},
+      "Відкритість_новому_досвіду":{items:["tipi_5","tipi_10"], rev:["tipi_10"]},
+    }
+  },
+
+  k10:{
+    instruction:"Протягом останніх 4 тижнів, як часто Ви...",
+    scaleLabels:["Ніколи","Рідко","Іноді","Більшу частину часу","Весь час"],
+    max:5,
+    items:[
+      {id:"k10_1", text:"відчували, що втомилися без особливих причин?"},
+      {id:"k10_2", text:"відчували нервовість?"},
+      {id:"k10_3", text:"відчували таку нервовість, що ніщо не могло вас заспокоїти?"},
+      {id:"k10_4", text:"відчували безнадійність?"},
+      {id:"k10_5", text:"відчували неспокій або нетерплячість?"},
+      {id:"k10_6", text:"відчували такий неспокій, що не могли всидіти на місці?"},
+      {id:"k10_7", text:"відчували пригніченість або смуток?"},
+      {id:"k10_8", text:"відчували, що будь-яке зусилля коштує вам великих зусиль?"},
+      {id:"k10_9", text:"відчували таку пригніченість, що ніщо не могло вас підбадьорити?"},
+      {id:"k10_10",text:"відчували свою нікчемність?"},
+    ]
+  },
+
+  wemwbs:{
+    instruction:"Нижче наведено кілька тверджень про Ваші почуття та думки. Будь ласка, позначте цифру, яка найкраще описує Ваш досвід протягом останніх двох тижнів.",
+    scaleLabels:["Ніколи","Рідко","Іноді","Часто","Весь час"],
+    max:5,
+    items:[
+      {id:"w_1", text:"Я з оптимізмом дивлюся в майбутнє"},
+      {id:"w_2", text:"Я відчуваю себе корисним(-ою)"},
+      {id:"w_3", text:"Я почуваюся розслабленим(-ою)"},
+      {id:"w_4", text:"Мене цікавлять інші люди"},
+      {id:"w_5", text:"У мене достатньо енергії"},
+      {id:"w_6", text:"Я добре справляюся з проблемами"},
+      {id:"w_7", text:"Я мислю ясно"},
+      {id:"w_8", text:"Я добре себе почуваю"},
+      {id:"w_9", text:"Я відчуваю близькість до інших людей"},
+      {id:"w_10",text:"Я впевнений(-а) в собі"},
+      {id:"w_11",text:"Я можу самостійно приймати рішення"},
+      {id:"w_12",text:"Я відчуваю, що мене люблять"},
+      {id:"w_13",text:"Я цікавлюся новими речами"},
+      {id:"w_14",text:"Я почуваюся бадьорим(-ою)"},
+    ]
+  }
+};
+
+// ════════════════════════════════════════════
+//  СТАН
+// ════════════════════════════════════════════
+const S = {
+  step:"info", consent:false,
+  answers:{age:null,gender:null,education:null,employment:[],psychHelp:null},
+  errs:new Set(), blockErr:false, submitting:false
+};
+
+// ════════════════════════════════════════════
+//  ПРОГРЕС
+// ════════════════════════════════════════════
+function renderProgress() {
+  const s=S.step;
+  if(s==="done"||s==="out") return "";
+  const idx=C.steps.indexOf(s);
+  const total=C.steps.length-1;
+  const pct=Math.round(idx/total*100);
+  const label=C.stepLabels[idx]||"";
+  const dots=C.stepLabels.slice(0,-1).map((l,i)=>{
+    const col=i<idx?"#888780":i===idx?"#185fa5":"#d3d1c7";
+    const fw=i===idx?500:400;
+    return `<span style="flex:1;font-size:10px;text-align:center;color:${col};font-weight:${fw};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${l}</span>`;
+  }).join("");
+  return `
+    <div style="margin-bottom:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-size:13px;color:#444;font-weight:500">${label}</span>
+        <span style="font-size:12px;color:#888780">Крок ${idx+1} з ${total}</span>
+      </div>
+      <div style="height:3px;background:#d3d1c7;border-radius:99px;margin-bottom:6px">
+        <div style="height:3px;background:#185fa5;border-radius:99px;width:${pct}%;transition:width .5s ease"></div>
+      </div>
+      <div style="display:flex;gap:3px">${dots}</div>
+    </div>`;
+}
+
+// ════════════════════════════════════════════
+//  РЕНДЕР КРОКІВ
+// ════════════════════════════════════════════
+function rInfo() {
+  return `<h1>${C.title}</h1>
+    <div class="ibox">
+      <p>Дякуємо за вашу участь!</p>
+      <p>Будь ласка, зверніть увагу: вся отримана інформація та ваші відповіді є суворо конфіденційними і не передаватимуться третім особам.</p>
+    </div>
+    <div class="nav"><button class="nb" id="btn-next">Розпочати →</button></div>`;
+}
+
+function rConsent() {
+  const on=S.consent;
+  return `<h2>Підтвердження згоди</h2>
+    <p class="sub">Натискаючи кнопку нижче, Ви підтверджуєте, що:</p>
+    <div class="ibox">
+      <p>• ознайомилися з інформацією про дослідження;</p>
+      <p>• розумієте свої права як учасника;</p>
+      <p>• добровільно погоджуєтеся на участь у дослідженні та обробку наданих Вами відповідей для наукових цілей.</p>
+    </div>
+    <label class="ccb${on?" on":""}">
+      <input type="checkbox" id="cb" ${on?"checked":""}>
+      <span>Я прочитав(ла) цю інформацію, мені все зрозуміло, і я добровільно погоджуюся взяти участь у дослідженні</span>
+    </label>
+    <div class="nav">
+      <button class="bb" id="btn-back">← Назад</button>
+      <button class="nb" id="btn-next" ${!on?"disabled":""}>Я згоден(на) взяти участь →</button>
+    </div>`;
+}
+
+function rg(name,opts,val) {
+  const hasErr=S.errs.has(name);
+  return `<div class="ropts">${opts.map(o=>`
+    <label class="ropt${val===o?" on":""}${hasErr?" bad":""}">
+      <input type="radio" name="${name}" value="${o}" ${val===o?"checked":""}> ${o}
+    </label>`).join("")}</div>
+    ${hasErr?`<p class="ferr">Будь ласка, оберіть відповідь</p>`:""}`;
+}
+
+function cg(name,opts,vals) {
+  return `<div class="ropts">${opts.map(o=>`
+    <label class="ropt${vals.includes(o)?" on":""}">
+      <input type="checkbox" name="${name}" value="${o}" ${vals.includes(o)?"checked":""}> ${o}
+    </label>`).join("")}</div>`;
+}
+
+function rDemo() {
+  const a=S.answers;
+  return `<h2>Загальна інформація</h2>
+    <p class="sub">Будь ласка, дайте відповідь на кілька запитань про себе.</p>
+    <div class="field"><label class="fl">До якої вікової групи Ви належите?<span class="req">*</span></label>${rg("age",C.ages,a.age)}</div>
+    <div class="field"><label class="fl">Як Ви себе ідентифікуєте?<span class="req">*</span></label>${rg("gender",C.genders,a.gender)}</div>
+    <div class="field"><label class="fl">Найвищий рівень освіти, який Ви здобули / здобуваєте?<span class="req">*</span></label>${rg("education",C.educations,a.education)}</div>
+    <div class="field"><label class="fl">Статус зайнятості <span style="font-weight:400;font-size:13px;color:#888780">(можна обрати декілька)</span></label>${cg("employment",C.employments,a.employment)}</div>
+    <div class="field"><label class="fl">Чи зверталися Ви по професійну психологічну або психіатричну допомогу?<span class="req">*</span></label>${rg("psychHelp",C.psychHelps,a.psychHelp)}</div>
+    ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі обов'язкові запитання</p>`:""}
+    <div class="nav">
+      <button class="bb" id="btn-back">← Назад</button>
+      <button class="nb" id="btn-next">Далі →</button>
+    </div>`;
+}
+
+function rItem(item,bkey,num) {
+  const block=C[bkey];
+  const val=S.answers[item.id];
+  const hasErr=S.errs.has(item.id);
+  const labs=block.scaleLabels;
+  const btns=Array.from({length:block.max},(_,i)=>i+1).map(n=>
+    `<button class="sbtn${val===n?" on":""}" data-id="${item.id}" data-v="${n}">${n}</button>`
+  ).join("");
+  return `<div class="qcard${hasErr?" bad":""}" id="qc-${item.id}">
+    <p class="qnum">Твердження ${num}</p>
+    <p class="qtext">${item.text}</p>
+    <div class="srow">${btns}</div>
+    <div class="slabs"><span>${labs[0]}</span><span>${labs[labs.length-1]}</span></div>
+    ${hasErr?`<p class="qerr">Будь ласка, оберіть відповідь</p>`:""}
+  </div>`;
+}
+
+function rBlock(bkey) {
+  const cfg=C[bkey];
+  const isLast=bkey==="wemwbs";
+  const titles={tipi:"TIPI-UKR",k10:"K10",wemwbs:"WEMWBS"};
+  return `<h2>${titles[bkey]}</h2>
+    <p class="sub">${bkey==="tipi"?C.tipi.prefix:cfg.instruction}</p>
+    ${bkey==="tipi"?`<div class="note">${C.tipi.instruction}</div>`:""}
+    ${cfg.items.map((item,i)=>rItem(item,bkey,i+1)).join("")}
+    ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі запитання</p>`:""}
+    <div class="nav">
+      <button class="bb" id="btn-back">← Назад</button>
+      <button class="nb" id="btn-next" ${S.submitting?"disabled":""}>
+        ${isLast?(S.submitting?"Збереження...":"Надіслати відповіді →"):"Далі →"}
+      </button>
+    </div>`;
+}
+
+function rOut() {
+  return `<div class="end"><div class="eicon">🙏</div>
+    <h2>Дякуємо за інтерес!</h2>
+    <p>На жаль, це дослідження розраховане на учасників вікової групи 18–29 років. Ми цінуємо вашу готовність допомогти!</p>
+  </div>`;
+}
+
+function rDone() {
+  return `<div class="end"><div class="eicon">✅</div>
+    <h2>Дякуємо за участь!</h2>
+    <p>Ваші відповіді успішно збережено та будуть використані в науковій роботі.</p>
+    ${C.resourceUrl?`<a class="rbtn" href="${C.resourceUrl}" target="_blank" rel="noopener">↗ ${C.resourceText}</a>`:""}
+  </div>`;
+}
+
+// ════════════════════════════════════════════
+//  ГОЛОВНИЙ РЕНДЕР
+// ════════════════════════════════════════════
+function render() {
+  const app=document.getElementById("app");
+  const s=S.step;
+  if(s==="out")  { app.innerHTML=rOut();  return; }
+  if(s==="done") { app.innerHTML=rDone(); return; }
+  const map={info:rInfo,consent:rConsent,demo:rDemo,
+             tipi:()=>rBlock("tipi"),k10:()=>rBlock("k10"),wemwbs:()=>rBlock("wemwbs")};
+  app.innerHTML=renderProgress()+(map[s]?map[s]():"");
+  attachListeners();
+}
+
+// ════════════════════════════════════════════
+//  СЛУХАЧІ
+// ════════════════════════════════════════════
+function attachListeners() {
+  document.getElementById("btn-next")?.addEventListener("click",handleNext);
+  document.getElementById("btn-back")?.addEventListener("click",handleBack);
+  document.getElementById("cb")?.addEventListener("change",e=>{S.consent=e.target.checked;render();});
+  document.querySelectorAll('input[type="radio"]').forEach(el=>{
+    el.addEventListener("change",e=>{
+      S.answers[e.target.name]=e.target.value;
+      S.errs.delete(e.target.name);
+      S.blockErr=false;
+      render();
+    });
+  });
+  document.querySelectorAll('input[type="checkbox"][name="employment"]').forEach(el=>{
+    el.addEventListener("change",e=>{
+      if(e.target.checked){if(!S.answers.employment.includes(e.target.value))S.answers.employment.push(e.target.value);}
+      else{S.answers.employment=S.answers.employment.filter(v=>v!==e.target.value);}
+      render();
+    });
+  });
+  document.querySelectorAll(".sbtn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const id=btn.dataset.id,v=parseInt(btn.dataset.v);
+      const sy=document.documentElement.scrollTop||document.body.scrollTop||0;
+      S.answers[id]=v;
+      S.errs.delete(id);
+      if(S.blockErr&&C[S.step].items.every(i=>S.answers[i.id]!==undefined))S.blockErr=false;
+      render();
+      requestAnimationFrame(()=>{document.documentElement.scrollTop=sy;document.body.scrollTop=sy;});
+    });
+  });
+}
+
+// ════════════════════════════════════════════
+//  НАВІГАЦІЯ
+// ════════════════════════════════════════════
+const STEPS=["info","consent","demo","tipi","k10","wemwbs","done"];
+
+function handleBack(){
+  const i=STEPS.indexOf(S.step);
+  if(i>0){S.step=STEPS[i-1];S.errs=new Set();S.blockErr=false;render();}
+}
+
+function scrollToErr(){
+  setTimeout(()=>{
+    const el=document.querySelector(".bad,.berr,.qcard.bad");
+    if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
+  },50);
+}
+
+function handleNext(){
+  S.blockErr=false;
+  const s=S.step;
+  if(s==="info"){S.step="consent";render();return;}
+  if(s==="consent"){if(!S.consent)return;S.step="demo";render();return;}
+  if(s==="demo"){
+    const missing=new Set(["age","gender","education","psychHelp"].filter(f=>!S.answers[f]));
+    if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
+    if(S.answers.age!==C.allowedAge){S.step="out";render();return;}
+    S.step="tipi";render();return;
+  }
+  if(["tipi","k10","wemwbs"].includes(s)){
+    const missing=new Set(C[s].items.filter(i=>S.answers[i.id]===undefined).map(i=>i.id));
+    if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
+    if(s==="wemwbs"){submitData();return;}
+    S.step=STEPS[STEPS.indexOf(s)+1];render();return;
+  }
+}
+
+// ════════════════════════════════════════════
+//  ПІДРАХУНОК
+// ════════════════════════════════════════════
+function calcTIPI(){
+  const max=C.tipi.max,out={};
+  Object.entries(C.tipi.subscales).forEach(([name,sub])=>{
+    const vals=sub.items.map(id=>{
+      const v=S.answers[id];
+      return v===undefined?null:(sub.rev.includes(id)?(max+1-v):v);
+    }).filter(v=>v!==null);
+    out[`tipi_${name}`]=vals.length===2?parseFloat(((vals[0]+vals[1])/2).toFixed(2)):null;
+  });
+  return out;
+}
+
+function calcK10(){
+  const total=C.k10.items.reduce((s,i)=>s+(S.answers[i.id]||0),0);
+  const cat=total<=19?"Стресостійкий (10–19)":total<=24?"Помірний (20–24)":total<=29?"Значний (25–29)":"Тяжкий (30–50)";
+  return {k10_total:total,k10_category:cat};
+}
+
+function calcWEMWBS(){
+  const total=C.wemwbs.items.reduce((s,i)=>s+(S.answers[i.id]||0),0);
+  const cat=total<41?"Нижче середнього (<41)":total<=45?"Середній (41–45)":"Вище середнього (>45)";
+  return {wemwbs_total:total,wemwbs_category:cat};
+}
+
+// ════════════════════════════════════════════
+//  ЗБЕРЕЖЕННЯ
+// ════════════════════════════════════════════
+async function submitData(){
+  S.submitting=true;render();
+  const raw={};
+  [...C.tipi.items,...C.k10.items,...C.wemwbs.items].forEach(i=>{raw[i.id]=S.answers[i.id];});
+  const payload={
+    timestamp:new Date().toISOString(),
+    age:S.answers.age, gender:S.answers.gender,
+    education:S.answers.education,
+    employment:S.answers.employment.join(", "),
+    psychHelp:S.answers.psychHelp,
+    ...raw,
+    ...calcTIPI(),
+    ...calcK10(),
+    ...calcWEMWBS()
+  };
+  try{
+    if(C.scriptUrl&&!C.scriptUrl.includes("ВСТАВТЕ")){
+      await fetch(C.scriptUrl,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    }
+  }catch(e){console.error(e);}
+  S.submitting=false;S.step="done";render();
+}
+
+render();
+</script>
+</body>
+</html>
