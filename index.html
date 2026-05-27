@@ -74,7 +74,7 @@ const C = {
   educations:["Профтехосвіта / коледж","Бакалавр","Магістр","Аспірантура / докторантура","Інше"],
   employments:["Працевлаштований(на)","Самозайнятий(на)","Студент(ка)","Інше"],
   psychHelps:["Так, раніше","Так, зараз перебуваю в процесі консультування / терапії","Ні, ніколи","Інше"],
-  locations:["Україна","Країни Європи (крім України)","США або Канада","Азія","Інший регіон"],
+  locations:["Україна","Інші країни Європи","США або Канада","Азія","Інший регіон"],
   locationUkraine:"Україна",
 
   steps:["info","consent","demo","tipi","k10","wemwbs","done"],
@@ -251,7 +251,7 @@ function rDemo() {
           </label>
           <input type="text" id="locationDetail"
             value="${a.locationDetail||""}"
-            placeholder="${a.location===C.locationUkraine ? "Наприклад: Київ" : "Наприклад: Польща"}"
+            placeholder="${a.location===C.locationUkraine ? "Наприклад: Київ" : a.location==="Інші країни Європи" ? "Наприклад: Велика Британія" : a.location==="США або Канада" ? "Наприклад: США" : a.location==="Азія" ? "Наприклад: Японія" : "Наприклад: Австралія"}"
             style="width:100%;padding:9px 12px;border:0.5px solid ${S.errs.has('locationDetail')?'#a32d2d':'#d3d1c7'};border-radius:8px;font-size:14px;outline:none;background:#fff;color:#1a1a1a"
           />
           ${S.errs.has('locationDetail')?`<p class="ferr">Будь ласка, заповніть це поле</p>`:""}
