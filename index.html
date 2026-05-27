@@ -376,9 +376,17 @@ function attachListeners() {
 // ════════════════════════════════════════════
 const STEPS=["info","consent","demo","tipi","k10","wemwbs","done"];
 
+function scrollTop(){
+  setTimeout(()=>{
+    try{window.scrollTo(0,0);}catch(e){}
+    try{document.documentElement.scrollTop=0;}catch(e){}
+    try{document.body.scrollTop=0;}catch(e){}
+  },20);
+}
+
 function handleBack(){
   const i=STEPS.indexOf(S.step);
-  if(i>0){S.step=STEPS[i-1];S.errs=new Set();S.blockErr=false;render();}
+  if(i>0){S.step=STEPS[i-1];S.errs=new Set();S.blockErr=false;render();scrollTop();}
 }
 
 function scrollToErr(){
@@ -391,21 +399,21 @@ function scrollToErr(){
 function handleNext(){
   S.blockErr=false;
   const s=S.step;
-  if(s==="info"){S.step="consent";render();return;}
-  if(s==="consent"){if(!S.consent)return;S.step="demo";render();return;}
+  if(s==="info"){S.step="consent";render();scrollTop();return;}
+  if(s==="consent"){if(!S.consent)return;S.step="demo";render();scrollTop();return;}
   if(s==="demo"){
     const missing=new Set(["age","gender","education","psychHelp","location"].filter(f=>!S.answers[f]));
-    // locationDetail обов'язкове якщо обрано регіон
     if(S.answers.location && !S.answers.locationDetail.trim()) missing.add("locationDetail");
     if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
-    if(S.answers.age!==C.allowedAge){S.step="out";render();return;}
-    S.step="tipi";render();return;
+    if(S.answers.age!==C.allowedAge){S.step="out";render();scrollTop();return;}
+    S.step="tipi";render();scrollTop();return;
   }
   if(["tipi","k10","wemwbs"].includes(s)){
-    const missing=new Set(C[s].items.filter(i=>S.answers[i.id]===undefined).map(i=>i.id));
+    const items=C[s].items;
+    const missing=new Set(items.filter(i=>S.answers[i.id]===undefined).map(i=>i.id));
     if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
     if(s==="wemwbs"){submitData();return;}
-    S.step=STEPS[STEPS.indexOf(s)+1];render();return;
+    S.step=STEPS[STEPS.indexOf(s)+1];render();scrollTop();return;
   }
 }
 
@@ -437,12 +445,72 @@ function calcWEMWBS(){
 }
 
 // ════════════════════════════════════════════
+//  ЯКІСТЬ ДАНИХ
+// ════════════════════════════════════════════
+function isStraightLine(ids){
+  const vals=ids.map(id=>S.answers[id]).filter(v=>v!==undefined);
+  return vals.length>=6 && vals.every(v=>v===vals[0]);
+}
+
+function detectContradictions(){
+  const a=S.answers;
+
+  // ── TIPI: різниця між пунктами підшкали після реверсування ≥ 4 ──
+  // Якщо два пункти підшкали сильно розходяться — внутрішня суперечність
+  const tipiRev=["tipi_2","tipi_4","tipi_6","tipi_8","tipi_10"];
+  const score=id=>tipiRev.includes(id)?(8-a[id]):a[id];
+  const tipiPairs=[
+    ["tipi_1","tipi_6"],  // Екстраверсія
+    ["tipi_2","tipi_7"],  // Дружелюбність
+    ["tipi_3","tipi_8"],  // Добросовісність
+    ["tipi_4","tipi_9"],  // Емоційна стабільність
+    ["tipi_5","tipi_10"], // Відкритість
+  ];
+  const tipiContr=tipiPairs.filter(([a1,a2])=>Math.abs(score(a1)-score(a2))>=4).length;
+
+  // ── K10: логічна ієрархія — більш інтенсивний симптом ≤ загального ──
+  // k10_3 (неможливо заспокоїти) не може бути > k10_2 (нервовість загалом)
+  // k10_6 (не міг всидіти) не може бути > k10_5 (неспокій загалом)
+  // k10_9 (ніщо не підбадьорить) не може бути > k10_7 (пригніченість загалом)
+  let k10Contr=0;
+  if(a.k10_3>a.k10_2) k10Contr++;
+  if(a.k10_6>a.k10_5) k10Contr++;
+  if(a.k10_9>a.k10_7) k10Contr++;
+
+  // ── WEMWBS: семантично близькі пари — різниця ≥ 3 на шкалі 1–5 ──
+  // w_5 (енергія) і w_14 (бадьорість) — майже те саме
+  // w_7 (ясне мислення) і w_11 (самостійні рішення) — когнітивне функціонування
+  // w_1 (оптимізм) і w_8 (добре себе почуваю) — загальний позитивний афект
+  let wContr=0;
+  if(Math.abs(a.w_5-a.w_14)>=3) wContr++;
+  if(Math.abs(a.w_7-a.w_11)>=3) wContr++;
+  if(Math.abs(a.w_1-a.w_8)>=3)  wContr++;
+
+  return {
+    contr_tipi:tipiContr,       // к-сть суперечливих підшкал TIPI (0–5)
+    contr_tipi_flag:tipiContr>=2?1:0,
+    contr_k10:k10Contr,         // к-сть порушень ієрархії K10 (0–3)
+    contr_k10_flag:k10Contr>=2?1:0,
+    contr_wemwbs:wContr,        // к-сть суперечливих пар WEMWBS (0–3)
+    contr_wemwbs_flag:wContr>=2?1:0,
+  };
+}
+
+// ════════════════════════════════════════════
 //  ЗБЕРЕЖЕННЯ
 // ════════════════════════════════════════════
 async function submitData(){
   S.submitting=true;render();
   const raw={};
   [...C.tipi.items,...C.k10.items,...C.wemwbs.items].forEach(i=>{raw[i.id]=S.answers[i.id];});
+
+  const slTipi  =isStraightLine(C.tipi.items.map(i=>i.id));
+  const slK10   =isStraightLine(C.k10.items.map(i=>i.id));
+  const slWemwbs=isStraightLine(C.wemwbs.items.map(i=>i.id));
+  const contr   =detectContradictions();
+
+  const anyFlag=slTipi||slK10||slWemwbs||contr.contr_tipi_flag||contr.contr_k10_flag||contr.contr_wemwbs_flag;
+
   const payload={
     timestamp:new Date().toISOString(),
     age:S.answers.age, gender:S.answers.gender,
@@ -452,6 +520,11 @@ async function submitData(){
     location:S.answers.location,
     locationDetail:S.answers.locationDetail,
     ...raw,
+    sl_tipi:slTipi?1:0,
+    sl_k10:slK10?1:0,
+    sl_wemwbs:slWemwbs?1:0,
+    ...contr,
+    data_quality:anyFlag?"⚠️ ПЕРЕВІРИТИ":"✅ OK",
     ...calcTIPI(),
     ...calcK10(),
     ...calcWEMWBS()
