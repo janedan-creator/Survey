@@ -74,6 +74,8 @@ const C = {
   educations:["Профтехосвіта / коледж","Бакалавр","Магістр","Аспірантура / докторантура","Інше"],
   employments:["Працевлаштований(на)","Самозайнятий(на)","Студент(ка)","Інше"],
   psychHelps:["Так, раніше","Так, зараз перебуваю в процесі консультування / терапії","Ні, ніколи","Інше"],
+  locations:["Україна","Країни Європи (крім України)","США або Канада","Азія","Інший регіон"],
+  locationUkraine:"Україна",
 
   steps:["info","consent","demo","tipi","k10","wemwbs","done"],
   stepLabels:["Інформація","Згода","Про вас","TIPI","K10","WEMWBS","Завершено"],
@@ -151,7 +153,7 @@ const C = {
 // ════════════════════════════════════════════
 const S = {
   step:"info", consent:false,
-  answers:{age:null,gender:null,education:null,employment:[],psychHelp:null},
+  answers:{age:null,gender:null,education:null,employment:[],psychHelp:null,location:null,locationDetail:""},
   errs:new Set(), blockErr:false, submitting:false
 };
 
@@ -239,6 +241,23 @@ function rDemo() {
     <div class="field"><label class="fl">Найвищий рівень освіти, який Ви здобули / здобуваєте?<span class="req">*</span></label>${rg("education",C.educations,a.education)}</div>
     <div class="field"><label class="fl">Статус зайнятості <span style="font-weight:400;font-size:13px;color:#888780">(можна обрати декілька)</span></label>${cg("employment",C.employments,a.employment)}</div>
     <div class="field"><label class="fl">Чи зверталися Ви по професійну психологічну або психіатричну допомогу?<span class="req">*</span></label>${rg("psychHelp",C.psychHelps,a.psychHelp)}</div>
+    <div class="field">
+      <label class="fl">Укажіть, будь ласка, Ваше поточне місце проживання або перебування<span class="req">*</span></label>
+      ${rg("location",C.locations,a.location)}
+      ${a.location ? `
+        <div style="margin-top:10px">
+          <label class="fl" style="font-weight:400;font-size:13px;color:#444">
+            ${a.location===C.locationUkraine ? "Яке місто?" : "Яка країна?"}
+          </label>
+          <input type="text" id="locationDetail"
+            value="${a.locationDetail||""}"
+            placeholder="${a.location===C.locationUkraine ? "Наприклад: Київ" : "Наприклад: Польща"}"
+            style="width:100%;padding:9px 12px;border:0.5px solid ${S.errs.has('locationDetail')?'#a32d2d':'#d3d1c7'};border-radius:8px;font-size:14px;outline:none;background:#fff;color:#1a1a1a"
+          />
+          ${S.errs.has('locationDetail')?`<p class="ferr">Будь ласка, заповніть це поле</p>`:""}
+        </div>
+      ` : ""}
+    </div>
     ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі обов'язкові запитання</p>`:""}
     <div class="nav">
       <button class="bb" id="btn-back">← Назад</button>
@@ -319,7 +338,10 @@ function attachListeners() {
   document.querySelectorAll('input[type="radio"]').forEach(el=>{
     el.addEventListener("change",e=>{
       S.answers[e.target.name]=e.target.value;
+      // Скинути locationDetail при зміні регіону
+      if(e.target.name==="location") S.answers.locationDetail="";
       S.errs.delete(e.target.name);
+      S.errs.delete("locationDetail");
       S.blockErr=false;
       render();
     });
@@ -330,6 +352,11 @@ function attachListeners() {
       else{S.answers.employment=S.answers.employment.filter(v=>v!==e.target.value);}
       render();
     });
+  });
+  // Текстове поле для міста / країни — без ре-рендеру, просто зберігаємо
+  document.getElementById("locationDetail")?.addEventListener("input",e=>{
+    S.answers.locationDetail=e.target.value;
+    S.errs.delete("locationDetail");
   });
   document.querySelectorAll(".sbtn").forEach(btn=>{
     btn.addEventListener("click",()=>{
@@ -367,7 +394,9 @@ function handleNext(){
   if(s==="info"){S.step="consent";render();return;}
   if(s==="consent"){if(!S.consent)return;S.step="demo";render();return;}
   if(s==="demo"){
-    const missing=new Set(["age","gender","education","psychHelp"].filter(f=>!S.answers[f]));
+    const missing=new Set(["age","gender","education","psychHelp","location"].filter(f=>!S.answers[f]));
+    // locationDetail обов'язкове якщо обрано регіон
+    if(S.answers.location && !S.answers.locationDetail.trim()) missing.add("locationDetail");
     if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
     if(S.answers.age!==C.allowedAge){S.step="out";render();return;}
     S.step="tipi";render();return;
@@ -420,6 +449,8 @@ async function submitData(){
     education:S.answers.education,
     employment:S.answers.employment.join(", "),
     psychHelp:S.answers.psychHelp,
+    location:S.answers.location,
+    locationDetail:S.answers.locationDetail,
     ...raw,
     ...calcTIPI(),
     ...calcK10(),
@@ -428,7 +459,7 @@ async function submitData(){
   try{
     if(C.scriptUrl&&!C.scriptUrl.includes("ВСТАВТЕ")){
       await fetch(C.scriptUrl,{method:"POST",mode:"no-cors",
-        headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+        headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)});
     }
   }catch(e){console.error(e);}
   S.submitting=false;S.step="done";render();
