@@ -1,544 +1,460 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Психологічне дослідження</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Бібліотека ресурсів</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Sora:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;color:#1a1a1a;background:#f9f9f7;padding:0 0 3rem;min-height:100vh}
-input,button{font-family:inherit}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem 2rem}
-h1{font-size:22px;font-weight:500;line-height:1.35;margin-bottom:8px}
-h2{font-size:20px;font-weight:500;line-height:1.35;margin-bottom:6px}
-.sub{font-size:14px;color:#555;line-height:1.65;margin-bottom:20px}
-.ibox{background:#f1efe8;border-radius:12px;padding:18px 20px;margin-bottom:20px}
-.ibox p{font-size:14px;color:#555;line-height:1.75;margin-bottom:8px}
-.ibox p:last-child{margin-bottom:0}
-.note{background:#f1efe8;border-radius:8px;padding:11px 14px;margin-bottom:16px;font-size:13px;color:#555;line-height:1.65;border-left:3px solid #378add}
-.ccb{display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:13px 15px;border:0.5px solid #b4b2a9;border-radius:12px;margin-bottom:20px;transition:background .15s}
-.ccb.on{background:#eaf3de;border-color:#639922}
-.ccb input{margin-top:2px;flex-shrink:0;accent-color:#639922;width:16px;height:16px;cursor:pointer}
-.ccb span{font-size:14px;line-height:1.6}
-.nav{display:flex;gap:10px;margin-top:16px}
-.bb{padding:10px 16px;border:0.5px solid #b4b2a9;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:transparent;color:#5f5e5a;transition:all .15s;display:flex;align-items:center;gap:6px}
-.bb:hover{background:#f1efe8}
-.nb{flex:1;padding:11px 20px;border:0.5px solid #b4b2a9;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;background:#2c2c2a;color:#f9f9f7;transition:all .15s}
-.nb:hover{opacity:.85}
-.nb:disabled{background:#f1efe8;color:#b4b2a9;cursor:not-allowed}
-.field{margin-bottom:20px}
-.fl{display:block;font-size:14px;font-weight:500;margin-bottom:8px}
-.req{color:#a32d2d;margin-left:2px}
-.ropts{display:flex;flex-direction:column;gap:6px}
-.ropt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:0.5px solid #d3d1c7;border-radius:8px;cursor:pointer;font-size:14px;color:#1a1a1a;transition:all .12s}
-.ropt.on{border-color:#185fa5;background:#e6f1fb;color:#0c447c}
-.ropt.bad{border-color:#a32d2d}
-.ropt input{accent-color:#185fa5;flex-shrink:0;cursor:pointer}
-.ferr{color:#a32d2d;font-size:12px;margin-top:4px}
-.berr{color:#a32d2d;font-size:13px;margin-bottom:14px;padding:10px 12px;background:#fcebeb;border-radius:8px}
-.qcard{margin-bottom:14px;padding:15px;border:0.5px solid #d3d1c7;border-radius:12px;background:#fff}
-.qcard.bad{border-color:#a32d2d}
-.qnum{font-size:11px;color:#888780;margin-bottom:3px;font-weight:500;letter-spacing:.02em}
-.qtext{font-size:14px;line-height:1.65;margin-bottom:11px;color:#1a1a1a}
-.srow{display:flex;gap:4px;margin-bottom:5px}
-.sbtn{flex:1;padding:9px 2px;border:0.5px solid #b4b2a9;border-radius:8px;background:transparent;font-size:14px;cursor:pointer;color:#5f5e5a;transition:all .12s;min-width:26px}
-.sbtn.on{border-color:#185fa5;background:#e6f1fb;color:#0c447c;font-weight:500}
-.slabs{display:flex;justify-content:space-between}
-.slabs span{font-size:11px;color:#888780;max-width:48%;line-height:1.3}
-.slabs span:last-child{text-align:right}
-.qerr{color:#a32d2d;font-size:12px;margin-top:5px}
-.end{max-width:500px;margin:2rem auto;padding:2rem;text-align:center}
-.eicon{font-size:48px;margin-bottom:16px}
-.end h2{font-size:20px;font-weight:500;margin-bottom:12px}
-.end p{color:#555;line-height:1.7;font-size:15px;margin-bottom:20px}
-.rbtn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:0.5px solid #b4b2a9;border-radius:8px;background:#2c2c2a;color:#f9f9f7;font-size:14px;font-weight:500;cursor:pointer;transition:opacity .15s}
-.rbtn:hover{opacity:.85}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e1120;
+  --surface:rgba(255,255,255,0.06);
+  --surface-h:rgba(255,255,255,0.10);
+  --border:rgba(255,255,255,0.10);
+  --border-h:rgba(255,255,255,0.20);
+  --text:#eeeef8;
+  --text-2:#9090b8;
+  --text-3:#50507a;
+  --r:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── AURORA ── */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.3;animation:drift 28s ease-in-out infinite}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,#7c3aed,transparent);top:-250px;left:-200px;animation-duration:30s}
+.orb2{width:550px;height:550px;background:radial-gradient(circle,#0891b2,transparent);top:35%;right:-200px;animation-delay:-9s;animation-duration:24s}
+.orb3{width:650px;height:650px;background:radial-gradient(circle,#db2777,transparent);bottom:-150px;left:25%;animation-delay:-17s;animation-duration:34s}
+.orb4{width:450px;height:450px;background:radial-gradient(circle,#2563eb,transparent);top:55%;left:-120px;animation-delay:-5s;animation-duration:22s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,35px) scale(1.04)}50%{transform:translate(-35px,70px) scale(.96)}75%{transform:translate(70px,-35px) scale(1.07)}}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1380px;margin:0 auto;padding:0 24px}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:100;background:rgba(14,17,32,.78);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid var(--border)}
+.hinner{max-width:1380px;margin:0 auto;padding:16px 24px;display:flex;align-items:center}
+.logo{font-family:'Sora',sans-serif;font-size:17px;font-weight:700;white-space:nowrap;letter-spacing:-.3px}
+
+.snav-wrap{padding:0 0 4px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin-bottom:2px}
+.snav-wrap::-webkit-scrollbar{display:none}
+.sp{flex-shrink:0;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:40px;padding:7px 18px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.sp:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.sp.on{color:#fff;font-weight:500}
+
+/* ── HERO ── */
+.hero{padding:60px 0 36px;text-align:center}
+.htitle{font-family:'Playfair Display',Georgia,serif;font-size:clamp(44px,8vw,90px);font-weight:900;line-height:1.15;letter-spacing:-1px;padding:0 0 8px;background:linear-gradient(135deg,#fff 0%,#c4b5fd 38%,#7dd3fc 68%,#fff 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 7s ease-in-out infinite;margin-bottom:18px}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hsub{font-size:17px;color:var(--text-2);font-weight:300;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.6}
+.hstats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:40px;padding:5px 15px;font-size:12.5px;color:var(--text-2)}
+
+/* ── SECTION NAV (content area) ── */
+
+/* ── QUICK FILTERS ── */
+.qfs{display:flex;gap:8px;flex-wrap:wrap;padding:8px 0 24px}
+.qf{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:40px;padding:7px 18px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.qf:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.qf.on{background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(6,182,212,.28));border-color:rgba(124,58,237,.45);color:#fff;font-weight:500}
+
+/* ── RESULTS INFO ── */
+.rinfo{text-align:center;font-size:12.5px;color:var(--text-3);margin-bottom:20px;min-height:18px}
+
+/* ── GRID ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:15px;padding-bottom:80px}
+
+/* ── CARD ── */
+.card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--ac);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:11px;transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s,background .2s,border-color .2s;position:relative;overflow:hidden;animation:cin .45s ease both;will-change:transform}
+.card:hover{background:var(--surface-h);border-color:var(--border-h);border-left-color:var(--ac);transform:translateY(-5px);box-shadow:0 20px 55px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
+@keyframes cin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.ctop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.cicon{font-size:20px;line-height:1;flex-shrink:0}
+.cbadges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.b{font-size:10.5px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bfmt{background:rgba(255,255,255,.07);color:var(--text-2);border:1px solid var(--border)}
+.bfree{background:rgba(16,185,129,.18);color:#86efac;border:1px solid rgba(16,185,129,.28)}
+.bpart{background:rgba(234,179,8,.18);color:#fde68a;border:1px solid rgba(234,179,8,.28)}
+.bpaid{background:rgba(239,68,68,.14);color:#fca5a5;border:1px solid rgba(239,68,68,.28)}
+
+.ctitle{font-family:'Sora',sans-serif;font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
+.cdesc{font-size:12.5px;color:var(--text-2);line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.ctags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.tag{font-size:10.5px;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text-3);cursor:pointer;transition:all .15s}
+.tag:hover{background:rgba(255,255,255,.09);color:var(--text-2)}
+.cfoot{margin-top:auto;padding-top:6px}
+.cbtn{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:40px;padding:7px 16px;font-size:12.5px;font-family:'DM Sans',sans-serif;font-weight:500;color:var(--text);text-decoration:none;cursor:pointer;transition:all .2s}
+.cbtn:hover{background:var(--ac);border-color:var(--ac);color:#fff}
+
+/* ── EMPTY ── */
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--text-3)}
+.empty-ico{font-size:44px;margin-bottom:14px}
+.empty h3{font-family:'Sora',sans-serif;font-size:19px;color:var(--text-2);margin-bottom:7px}
+
+/* ── MODAL ── */
+.mover{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .2s}
+.mover.on{display:flex;opacity:1}
+.mbox{background:rgba(12,12,24,.97);border:1px solid rgba(255,255,255,.11);border-radius:26px;max-width:620px;width:100%;max-height:84vh;overflow-y:auto;padding:36px 38px;position:relative;animation:min .28s cubic-bezier(.23,1,.32,1);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+@keyframes min{from{opacity:0;transform:scale(.9) translateY(22px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mclose{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text-2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.mclose:hover{background:rgba(255,255,255,.14);color:var(--text)}
+.mc h1{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;margin-bottom:22px;color:var(--text)}
+.mc h2{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--text-2);margin:20px 0 10px;text-transform:uppercase;letter-spacing:.5px}
+.mc p{font-size:13.5px;color:var(--text-2);line-height:1.7;margin-bottom:10px}
+.mc ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;margin-bottom:6px}
+.mc ul li{font-size:13px;color:var(--text-2);line-height:1.6;padding-left:20px;position:relative}
+.mc ul li::before{content:'→';position:absolute;left:0;color:var(--text-3)}
+.mc .ci::before{content:'✓';color:#10b981}
+.mc .ri::before{content:'✕';color:#ef4444}
+.mc .gi::before{content:'✓';color:#10b981}
+.mc .note{font-size:13px;padding:10px 14px;border-radius:10px;margin:14px 0}
+.mc .note.purple{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.22);color:#c4b5fd}
+.mc .note.green{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#86efac}
+.mc .code{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:11px;padding:14px 16px;font-family:'DM Mono',monospace;font-size:12.5px;color:#a78bfa;margin:12px 0;white-space:pre-wrap;line-height:1.7}
+.mc table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12.5px}
+.mc th{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-3);font-weight:500}
+.mc td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-2)}
+.mc td:first-child{color:var(--text)}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:1;text-align:center;padding:28px 24px;border-top:1px solid var(--border);color:var(--text-3);font-size:12.5px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .hinner{padding:11px 16px}
+  .snav-wrap{padding:0 0 10px}
+  .wrap{padding:0 16px}
+  .hero{padding:40px 0 22px}
+  .grid{grid-template-columns:1fr}
+  .mbox{padding:26px 18px;border-radius:20px}
+}
 </style>
 </head>
 <body>
-<div class="wrap" id="app"></div>
+
+<div class="aurora">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+</div>
+
+<header>
+  <div class="hinner">
+    <div class="logo">📚 Ресурси</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 class="htitle">Бібліотека<br>ресурсів</h1>
+    <p class="hsub">Перевірені матеріали для розвитку, кар'єри та добробуту — зібрані в одному місці</p>
+    <div class="hstats">
+      <span class="stat">51 ресурс</span>
+      <span class="stat">8 розділів</span>
+      <span class="stat">5 гайдів</span>
+    </div>
+  </section>
+
+  <div class="snav-wrap" id="snav"></div>
+
+  <div class="qfs" id="qfs">
+    <button class="qf on" data-q="all">⭐ Всі</button>
+    <button class="qf" data-q="free">💸 Безкоштовно</button>
+    <button class="qf" data-q="beg">🆕 Для початківців</button>
+    <button class="qf" data-q="ua">🇺🇦 Для українців</button>
+    <button class="qf" data-q="cert">🏆 Сертифікат</button>
+  </div>
+
+  <div class="rinfo" id="rinfo"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>Зібрано з ❤️ · Всі ресурси перевірено · 2025–2026</footer>
+
+<div class="mover" id="mover">
+  <div class="mbox">
+    <button class="mclose" id="mclose">✕</button>
+    <div class="mc" id="mc"></div>
+  </div>
+</div>
+
 <script>
-// ════════════════════════════════════════════
-//  КОНФІГУРАЦІЯ — редагуйте тут
-// ════════════════════════════════════════════
-const C = {
-  title: "Психологічне дослідження",
-  scriptUrl: "https://script.google.com/macros/s/AKfycbxu009MZ6t6awLtpxXy7L466c1-a93ZrRCo2tOEyXfzZkZO5_9bWY_fvWKBqlhwYjxC/exec",
-  resourceUrl: "https://equable-carpet-f05.notion.site/36d0e7d5a9438089ba92c9a4f3057f47?source=copy_link",
-  resourceText: "Перейти до корисних ресурсів",
-  allowedAge: "18 – 29",
-
-  ages:["до 18","18 – 29","30 – 45","46 – 60","61 і старше"],
-  genders:["Жінка","Чоловік","Небінарна / інша гендерна ідентичність"],
-  educations:["Профтехосвіта / коледж","Бакалавр","Магістр","Аспірантура / докторантура","Інше"],
-  employments:["Працевлаштований(на)","Самозайнятий(на)","Студент(ка)","Інше"],
-  psychHelps:["Так, раніше","Так, зараз перебуваю в процесі консультування / терапії","Ні, ніколи","Інше"],
-  locations:["Україна","Інші країни Європи","США або Канада","Азія","Інший регіон"],
-  locationUkraine:"Україна",
-
-  steps:["info","consent","demo","tipi","k10","wemwbs","done"],
-  stepLabels:["Інформація","Згода","Про вас","TIPI","K10","WEMWBS","Завершено"],
-
-  tipi:{
-    instruction:"Нижче наведено перелік якостей, які можуть бути або не бути характерними для Вас. Оцініть, в якій мірі запропонована пара характеристик стосується Вас особисто, навіть якщо одна підходить більше, аніж друга.",
-    prefix:"Бачу себе як людину, яка є",
-    scaleLabels:["Абсолютно не погоджуюсь","Абсолютно погоджуюсь"],
-    max:7,
-    items:[
-      {id:"tipi_1", text:"Товариська, активна",                       R:false},
-      {id:"tipi_2", text:"Критична, конфліктна",                      R:true},
-      {id:"tipi_3", text:"Сумлінна, дисциплінована",                  R:false},
-      {id:"tipi_4", text:"Тривожна, схильна перейматися",             R:true},
-      {id:"tipi_5", text:"Відкрита до нового, різностороння",         R:false},
-      {id:"tipi_6", text:"Стримана, тиха",                            R:true},
-      {id:"tipi_7", text:"Тактовна, співчутлива, приязна",            R:false},
-      {id:"tipi_8", text:"Неорганізована, легковажна",                R:true},
-      {id:"tipi_9", text:"Спокійна, емоційно стабільна",              R:false},
-      {id:"tipi_10",text:"Не любить змін і пошуку нових рішень",      R:true},
-    ],
-    // Ключ: пункти з * рахуються у зворотному порядку (8 - бал)
-    subscales:{
-      "Екстраверсія":              {items:["tipi_1","tipi_6"],  rev:["tipi_6"]},
-      "Дружелюбність":             {items:["tipi_2","tipi_7"],  rev:["tipi_2"]},
-      "Добросовісність":           {items:["tipi_3","tipi_8"],  rev:["tipi_8"]},
-      "Емоційна_стабільність":     {items:["tipi_4","tipi_9"],  rev:["tipi_4"]},
-      "Відкритість_новому_досвіду":{items:["tipi_5","tipi_10"], rev:["tipi_10"]},
-    }
-  },
-
-  k10:{
-    instruction:"Протягом останніх 4 тижнів, як часто Ви...",
-    scaleLabels:["Ніколи","Рідко","Іноді","Більшу частину часу","Весь час"],
-    max:5,
-    items:[
-      {id:"k10_1", text:"відчували, що втомилися без особливих причин?"},
-      {id:"k10_2", text:"відчували нервовість?"},
-      {id:"k10_3", text:"відчували таку нервовість, що ніщо не могло вас заспокоїти?"},
-      {id:"k10_4", text:"відчували безнадійність?"},
-      {id:"k10_5", text:"відчували неспокій або нетерплячість?"},
-      {id:"k10_6", text:"відчували такий неспокій, що не могли всидіти на місці?"},
-      {id:"k10_7", text:"відчували пригніченість або смуток?"},
-      {id:"k10_8", text:"відчували, що будь-яке зусилля коштує вам великих зусиль?"},
-      {id:"k10_9", text:"відчували таку пригніченість, що ніщо не могло вас підбадьорити?"},
-      {id:"k10_10",text:"відчували свою нікчемність?"},
-    ]
-  },
-
-  wemwbs:{
-    instruction:"Нижче наведено кілька тверджень про Ваші почуття та думки. Будь ласка, позначте цифру, яка найкраще описує Ваш досвід протягом останніх двох тижнів.",
-    scaleLabels:["Ніколи","Рідко","Іноді","Часто","Весь час"],
-    max:5,
-    items:[
-      {id:"w_1", text:"Я з оптимізмом дивлюся в майбутнє"},
-      {id:"w_2", text:"Я відчуваю себе корисним(-ою)"},
-      {id:"w_3", text:"Я почуваюся розслабленим(-ою)"},
-      {id:"w_4", text:"Мене цікавлять інші люди"},
-      {id:"w_5", text:"У мене достатньо енергії"},
-      {id:"w_6", text:"Я добре справляюся з проблемами"},
-      {id:"w_7", text:"Я мислю ясно"},
-      {id:"w_8", text:"Я добре себе почуваю"},
-      {id:"w_9", text:"Я відчуваю близькість до інших людей"},
-      {id:"w_10",text:"Я впевнений(-а) в собі"},
-      {id:"w_11",text:"Я можу самостійно приймати рішення"},
-      {id:"w_12",text:"Я відчуваю, що мене люблять"},
-      {id:"w_13",text:"Я цікавлюся новими речами"},
-      {id:"w_14",text:"Я почуваюся бадьорим(-ою)"},
-    ]
-  }
+const SEC={
+  english:      {label:'🌍 Англійська',   color:'#06b6d4'},
+  jobs:         {label:'💼 Пошук роботи', color:'#3b82f6'},
+  it:           {label:'💻 IT',           color:'#8b5cf6'},
+  ai:           {label:'🤖 AI',           color:'#ec4899'},
+  courses:      {label:'🎓 Курси',        color:'#f97316'},
+  mental:       {label:'🧠 Ментальне',    color:'#10b981'},
+  finance:      {label:'💰 Фінанси',      color:'#eab308'},
+  opps:         {label:'🚀 Можливості',   color:'#ef4444'},
 };
 
-// ════════════════════════════════════════════
-//  СТАН
-// ════════════════════════════════════════════
-const S = {
-  step:"info", consent:false,
-  answers:{age:null,gender:null,education:null,employment:[],psychHelp:null,location:null,locationDetail:""},
-  errs:new Set(), blockErr:false, submitting:false
+const GUIDES={
+  linkedin:{title:'✅ Чеклист LinkedIn',html:`
+    <h1>✅ Чеклист LinkedIn-профілю</h1>
+    <h2>Візуальна частина</h2><ul>
+    <li class=ci>Актуальне фото — обличчя у фокусі, без відволікаючого фону</li>
+    <li class=ci>Бекграунд відображає твою професійну ідентичність</li>
+    <li class=ci>Кастомне посилання (linkedin.com/in/твоє-ім'я)</li></ul>
+    <h2>Headline / Заголовок</h2>
+    <div class="note purple">Формула: <strong>Посада</strong> + для кого + цінність<br>
+    <em style="opacity:.75">Приклад: Junior UX Designer | Роблю інтерфейси зрозумілими для людей, не тільки для екранів</em></div>
+    <h2>Секція About</h2><ul>
+    <li class=ci>Починається з цікавого твердження або питання</li>
+    <li class=ci>Показує глибину досвіду — роки, навички, стек</li>
+    <li class=ci>Є "надздібність" — чим вирізняєшся</li>
+    <li class=ci>Є заклик до дії (контакт для зв'язку)</li></ul>
+    <h2>Досвід роботи</h2><ul>
+    <li class=ci>Описаний з ключовими словами під твій напрямок</li>
+    <li class=ci>Є вимірювані результати (числа, відсотки, масштаб)</li>
+    <li class=ci>Career Break якщо є хронологічна прогалина</li>
+    <li class=ci>Медіа — презентації, відео, проєкти</li></ul>
+    <h2>Активність</h2><ul>
+    <li class=ci>"Open to work" статус увімкнений</li>
+    <li class=ci>Job Alerts налаштовані</li>
+    <li class=ci>Запити на рекомендації надіслані</li>
+    <li class=ci>Featured секція: резюме / портфоліо</li></ul>`},
+  iq:{title:'✅ Питання на співбесіді',html:`
+    <h1>✅ Питання які ставити на співбесіді</h1>
+    <p>Ці питання показують зрілість кандидата і допомагають зрозуміти чи підходить компанія.</p>
+    <h2>Про розвиток</h2><ul>
+    <li>Які перспективи росту передбачає ця позиція?</li>
+    <li>Як відбувається оцінка перформансу — є система цілепокладання?</li></ul>
+    <h2>Про команду та роль</h2><ul>
+    <li>З ким я буду найчастіше взаємодіяти?</li>
+    <li>Які очікування від мене на цій позиції?</li>
+    <li>Які виклики передбачені — в рамках функції?</li></ul>
+    <h2>Про культуру</h2><ul>
+    <li>Чому ви особисто обрали цю компанію?</li>
+    <li>Як ви виросли тут за цей час?</li>
+    <li>Якими досягненнями пишається компанія?</li>
+    <li>Як компанія реагує в кризових ситуаціях?</li></ul>
+    <div class="note green">💡 Підготуй 3–4 питання заздалегідь. Відсутність питань = низька мотивація.</div>`},
+  rf:{title:'🚩 Red flags на співбесіді',html:`
+    <h1>🚩 Що НЕ робити на співбесіді</h1>
+    <h2>Червоні прапорці для рекрутера</h2><ul>
+    <li class=ri>Критика попередніх колег, керівників або навчальних закладів</li>
+    <li class=ri>Відповіді "Не знаю" без спроби поміркувати вголос</li>
+    <li class=ri>Соціально прийнятні відповіді без аргументів ("Я дуже відповідальний")</li>
+    <li class=ri>Запізнення — навіть на онлайн-зустріч</li>
+    <li class=ri>Низький рівень підготовки про компанію = низька мотивація</li>
+    <li class=ri>Надмірний зовнішній локус контролю ("Мені не пощастило")</li>
+    <li class=ri>Нелінійність у відповідях без структури</li></ul>
+    <h2>Що підвищує рейтинг</h2><ul>
+    <li class=gi>Elevator pitch — коротко і чітко про себе</li>
+    <li class=gi>Конкретні приклади з цифрами і результатами</li>
+    <li class=gi>Підготовлені питання до компанії</li>
+    <li class=gi>Знання продуктів або останніх новин компанії</li></ul>`},
+  prompts:{title:'🧠 Як писати промпти',html:`
+    <h1>🧠 Як писати промпти що працюють</h1>
+    <p>AI відповідає рівно настільки добре, наскільки добре ти сформулював запит.</p>
+    <h2>Структура ефективного промпта</h2><ul>
+    <li><strong style="color:#f0f0f8">Роль</strong> — хто AI в цьому запиті<br><em style="color:#55557a;font-size:12px">«Ти досвідчений HR-рекрутер»</em></li>
+    <li><strong style="color:#f0f0f8">Задача</strong> — що конкретно зробити<br><em style="color:#55557a;font-size:12px">«Напиши cover letter для позиції UX Designer»</em></li>
+    <li><strong style="color:#f0f0f8">Контекст</strong> — важливі деталі<br><em style="color:#55557a;font-size:12px">«Компанія — фінтех, 2 роки досвіду, знаю Figma»</em></li>
+    <li><strong style="color:#f0f0f8">Обмеження</strong> — чого не треба<br><em style="color:#55557a;font-size:12px">«Без кліше, не більше 200 слів»</em></li>
+    <li><strong style="color:#f0f0f8">Формат</strong> — як оформити результат<br><em style="color:#55557a;font-size:12px">«Три абзаци з CTA в кінці»</em></li></ul>
+    <h2>Шаблон</h2>
+    <div class=code>Ти [роль].
+Твоя задача: [що зробити].
+Контекст: [важливі деталі].
+Не роби: [обмеження].
+Формат відповіді: [як оформити].</div>
+    <h2>Типові помилки</h2><ul>
+    <li class=ri>Розмита задача: "Напиши мені щось про роботу"</li>
+    <li class=ri>Немає контексту — AI не знає хто ти</li>
+    <li class=ri>Занадто довгий промпт без структури</li>
+    <li class=ri>Очікування що AI "здогадається" що ти мав на увазі</li></ul>`},
+  aimap:{title:'🗺 Карта AI-інструментів',html:`
+    <h1>🗺 Карта AI-інструментів</h1>
+    <p>4 категорії — що коли обирати.</p>
+    <h2>💬 Chat-інтерфейси</h2>
+    <p style="color:var(--text-3);font-size:12.5px;margin-bottom:8px">Для текстів, аналізу, відповідей на питання</p><ul>
+    <li>ChatGPT — chat.openai.com</li>
+    <li>Claude — claude.ai</li>
+    <li>Gemini — gemini.google.com</li>
+    <li>Perplexity — з посиланнями на джерела</li></ul>
+    <h2>⚙️ No-code автоматизація</h2><ul>
+    <li>Make.com — найпопулярніший</li>
+    <li>Zapier — простіший аналог</li>
+    <li>N8N — безкоштовний self-hosted</li></ul>
+    <h2>🎨 Спеціалізовані інструменти</h2><ul>
+    <li>Gamma — презентації за хвилини</li>
+    <li>Napkin.ai — схеми з тексту</li>
+    <li>Otter.ai — транскрипція зустрічей</li>
+    <li>Canva AI — дизайн з AI</li></ul>
+    <h2>Швидкий вибір</h2>
+    <table>
+    <tr><th>Задача</th><th>Інструмент</th></tr>
+    <tr><td>Написати текст</td><td>ChatGPT / Claude</td></tr>
+    <tr><td>Знайти факти з джерелами</td><td>Perplexity</td></tr>
+    <tr><td>Зробити презентацію</td><td>Gamma</td></tr>
+    <tr><td>Автоматизувати задачу</td><td>Make.com</td></tr>
+    <tr><td>Схема з тексту</td><td>Napkin.ai</td></tr></table>`},
 };
 
-// ════════════════════════════════════════════
-//  ПРОГРЕС
-// ════════════════════════════════════════════
-function renderProgress() {
-  const s=S.step;
-  if(s==="done"||s==="out") return "";
-  const idx=C.steps.indexOf(s);
-  const total=C.steps.length-1;
-  const pct=Math.round(idx/total*100);
-  const label=C.stepLabels[idx]||"";
-  const dots=C.stepLabels.slice(0,-1).map((l,i)=>{
-    const col=i<idx?"#888780":i===idx?"#185fa5":"#d3d1c7";
-    const fw=i===idx?500:400;
-    return `<span style="flex:1;font-size:10px;text-align:center;color:${col};font-weight:${fw};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${l}</span>`;
-  }).join("");
-  return `
-    <div style="margin-bottom:24px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <span style="font-size:13px;color:#444;font-weight:500">${label}</span>
-        <span style="font-size:12px;color:#888780">Крок ${idx+1} з ${total}</span>
-      </div>
-      <div style="height:3px;background:#d3d1c7;border-radius:99px;margin-bottom:6px">
-        <div style="height:3px;background:#185fa5;border-radius:99px;width:${pct}%;transition:width .5s ease"></div>
-      </div>
-      <div style="display:flex;gap:3px">${dots}</div>
-    </div>`;
-}
+const RES=[
+  // АНГЛІЙСЬКА
+  {s:'english',n:'BBC Learning English',url:'https://bbc.co.uk/learningenglish',t:['англійська','для початківців'],f:'сайт',p:'безкоштовно',d:'Структуровані уроки від BBC — граматика, лексика, аудіювання. Перевірена якість без реєстрації.'},
+  {s:'english',n:'6 Minute English',url:'https://bbc.co.uk/learningenglish/english/features/6-minute-english',t:['англійська'],f:'подкаст',p:'безкоштовно',d:'Короткі тематичні епізоди від BBC — ідеально для практики в навушниках дорогою. 6 хвилин на день.'},
+  {s:'english',n:'italki',url:'https://italki.com',t:['англійська'],f:'сайт',p:'платно',d:'Розмовна практика з носіями мови або вчителями. Є бюджетні варіанти від $5/год — обираєш зручний час.'},
+  {s:'english',n:'Anki',url:'https://apps.ankiweb.net',t:['англійська','для початківців'],f:'додаток',p:'безкоштовно',d:'Картки на основі інтервального повторення — науково обґрунтований спосіб запам\'ятовувати слова.'},
+  {s:'english',n:'IELTS.org',url:'https://ielts.org',t:['англійська','сертифікат','міжнародне визнання'],f:'сайт',p:'безкоштовно',d:'Офіційний сайт іспиту — безкоштовні зразки завдань, формати тестів, підготовчі матеріали.'},
+  {s:'english',n:'Cambridge English',url:'https://cambridgeenglish.org/learning-english',t:['англійська','сертифікат'],f:'сайт',p:'безкоштовно',d:'Офіційна підготовка до B2 First, C1 Advanced — тести, граматика, словник від Cambridge.'},
+  // ПОШУК РОБОТИ
+  {s:'jobs',n:'Work.ua',url:'https://work.ua',t:['пошук роботи','українською','для початківців'],f:'сайт',p:'безкоштовно',d:'Найбільший укр. джоб-борд — стажування, перша робота, конструктор резюме та поради кар\'єрного зростання.'},
+  {s:'jobs',n:'Happy Monday',url:'https://happymonday.ua',t:['пошук роботи','українською'],f:'сайт',p:'безкоштовно',d:'Платформа для тих, хто шукає роботу з цінностями та смислом — вакансії у прогресивних українських компаніях + кар\'єрні матеріали.'},
+  {s:'jobs',n:'Lobby X',url:'https://thelobbyx.com',t:['пошук роботи','українською'],f:'сайт',p:'безкоштовно',d:'Рекрутингова платформа з фокусом на розвиток України — вакансії у бізнесі, стартапах та міжнародних структурах.'},
+  {s:'jobs',n:'DOU Jobs',url:'https://jobs.dou.ua',t:['пошук роботи','IT'],f:'сайт',p:'безкоштовно',d:'Найбільша IT-спільнота України — вакансії у tech, зарплатний калькулятор, рейтинги компаній та відгуки розробників.'},
+  {s:'jobs',n:'Prostir.ua — НУО та міжнародні організації',url:'https://www.prostir.ua/category/jobs/',t:['пошук роботи','гранти','волонтерство'],f:'сайт',p:'безкоштовно',d:'Вакансії у НУО, міжнародних організаціях та третьому секторі — UNICEF, USAID, ООН, місцеві громадські організації.'},
+  {s:'jobs',n:'Djinni',url:'https://djinni.co',t:['пошук роботи','IT'],f:'сайт',p:'безкоштовно',d:'Найкращий джоб-борд для IT в Україні — анонімний пошук, відгук без резюме, прямий контакт з компанією.'},
+  {s:'jobs',n:'LinkedIn',url:'https://linkedin.com',t:['пошук роботи','нетворкінг','резюме'],f:'сайт',p:'безкоштовно',d:'Глобальна кар\'єрна мережа — пошук роботи, нетворкінг з рекрутерами, рекомендації. Must-have профіль.'},
+  {s:'jobs',n:'Relocate.me',url:'https://relocate.me',t:['пошук роботи','міжнародне визнання'],f:'сайт',p:'безкоштовно',d:'Вакансії з релокацією по всьому світу — фільтр по країні, візовій підтримці та галузі.'},
+  {s:'jobs',n:'Novoresume',url:'https://novoresume.com',t:['резюме','для початківців'],f:'сайт',p:'частково',d:'Зручний конструктор резюме з ATS-сумісними шаблонами — є безкоштовний базовий варіант.'},
+  {s:'jobs',n:'Jobscan',url:'https://jobscan.co',t:['резюме'],f:'інструмент',p:'частково',d:'Аналізує резюме на відповідність вакансії за ATS-алгоритмом. Показує що додати або прибрати.'},
+  {s:'jobs',n:'Interview Warmup (Google)',url:'https://grow.google/intl/uk_ua/certificates/interview-warmup',t:['співбесіда'],f:'інструмент',p:'безкоштовно',d:'Практика відповідей з AI-аналізом від Google. Є питання під різні напрямки — IT, маркетинг, UX.'},
+  {s:'jobs',n:'Glassdoor',url:'https://glassdoor.com',t:['співбесіда','пошук роботи'],f:'сайт',p:'безкоштовно',d:'Реальні відгуки про компанії від колишніх працівників + питання з реальних співбесід.'},
+  {s:'jobs',n:'HubSpot: Elevator Pitch',url:'https://blog.hubspot.com/sales/elevator-pitch-examples',t:['співбесіда','для початківців'],f:'стаття',p:'безкоштовно',d:'Приклади та структура elevator pitch — як коротко і переконливо розповісти про себе.'},
+  {s:'jobs',n:'✅ Чеклист LinkedIn-профілю',g:'linkedin',t:['нетворкінг','резюме','пошук роботи'],f:'гайд',p:'безкоштовно',d:'Фото, headline, About, досвід, Featured — повний чеклист для профілю що привертає рекрутерів.'},
+  {s:'jobs',n:'✅ Питання на співбесіді',g:'iq',t:['співбесіда'],f:'гайд',p:'безкоштовно',d:'Готові питання що показують зрілість кандидата — про ріст, культуру та очікування.'},
+  {s:'jobs',n:'🚩 Red flags на співбесіді',g:'rf',t:['співбесіда','для початківців'],f:'гайд',p:'безкоштовно',d:'Що видає непідготовленого кандидата і що навпаки підвищує рейтинг у очах рекрутера.'},
+  // IT
+  {s:'it',n:'Google Career Certificates',url:'https://grow.google/certificates',t:['IT','сертифікат','міжнародне визнання','для початківців'],f:'курс',p:'частково',d:'Сертифікати від Google без вищої освіти: Data Analytics, UX Design, IT Support, Cybersecurity.'},
+  {s:'it',n:'Microsoft Learn',url:'https://learn.microsoft.com',t:['IT','сертифікат','міжнародне визнання'],f:'платформа',p:'безкоштовно',d:'Офіційне безкоштовне навчання під сертифікації Microsoft: Azure, Power BI, AI Fundamentals.'},
+  {s:'it',n:'AWS Skill Builder',url:'https://skillbuilder.aws',t:['IT','сертифікат','міжнародне визнання'],f:'платформа',p:'безкоштовно',d:'Безкоштовні курси для підготовки до AWS Cloud Practitioner — найпопулярніша хмарна сертифікація.'},
+  {s:'it',n:'Cisco NetAcad',url:'https://netacad.com',t:['IT','сертифікат','для початківців'],f:'платформа',p:'безкоштовно',d:'Безкоштовні курси з мереж, кібербезпеки, Python від Cisco — добра база для входу в IT.'},
+  {s:'it',n:'Meta Blueprint',url:'https://facebook.com/business/learn',t:['IT','сертифікат','міжнародне визнання'],f:'платформа',p:'безкоштовно',d:'Офіційне навчання та сертифікація з digital-маркетингу від Meta — визнається глобально.'},
+  // AI
+  {s:'ai',n:'Learn Prompting',url:'https://learnprompting.org',t:['AI','для початківців'],f:'сайт',p:'безкоштовно',d:'Найповніший безкоштовний гайд з промпт-інжинірингу — від базового до просунутого рівня.'},
+  {s:'ai',n:'Google AI Essentials',url:'https://grow.google/ai-essentials',t:['AI','сертифікат'],f:'курс',p:'платно',d:'Практичний курс від Google — як використовувати AI ефективно в роботі. Дає міжнародний сертифікат.'},
+  {s:'ai',n:'Perplexity AI',url:'https://perplexity.ai',t:['AI'],f:'інструмент',p:'безкоштовно',d:'AI-пошук з посиланнями на джерела — замінює Google коли потрібно дослідити тему і перевірити факти.'},
+  {s:'ai',n:'Gamma',url:'https://gamma.app',t:['AI','фріланс'],f:'інструмент',p:'безкоштовно',d:'Створює презентації та документи через AI за лічені хвилини — для навчання і роботи.'},
+  {s:'ai',n:'Make.com',url:'https://make.com',t:['AI','автоматизація'],f:'інструмент',p:'безкоштовно',d:'No-code платформа автоматизацій без програмування — з\'єднує додатки між собою.'},
+  {s:'ai',n:'Projector: AI for Productivity',url:'https://prjctr.com/course/ai-for-personal-productivity',t:['AI','автоматизація'],f:'курс',p:'платно',d:'Практичний курс — AI-інфраструктура для щоденних задач, автоматизація рутини, інтеграція між сервісами.'},
+  {s:'ai',n:'🧠 Як писати промпти',g:'prompts',t:['AI','для початківців'],f:'гайд',p:'безкоштовно',d:'Структура ефективного промпта: Роль → Задача → Контекст → Обмеження → Формат. З шаблоном і прикладами.'},
+  {s:'ai',n:'🗺 Карта AI-інструментів',g:'aimap',t:['AI'],f:'гайд',p:'безкоштовно',d:'4 категорії: Chat-інтерфейси, no-code, спеціалізовані, API — таблиця що коли обирати.'},
+  // КУРСИ
+  {s:'courses',n:'Coursera',url:'https://coursera.org',t:['курси','сертифікат','міжнародне визнання'],f:'платформа',p:'частково',d:'Курси від університетів світу (Yale, Google, IBM). Є фінансова допомога — можна вчитись безкоштовно.'},
+  {s:'courses',n:'edX',url:'https://edx.org',t:['курси','сертифікат','міжнародне визнання'],f:'платформа',p:'частково',d:'Курси від MIT, Harvard, Microsoft. Аудит (перегляд без сертифікату) — безкоштовно.'},
+  {s:'courses',n:'Prometheus',url:'https://prometheus.org.ua',t:['курси','українською','безкоштовно'],f:'платформа',p:'безкоштовно',d:'Українська платформа масових курсів від університетів — від програмування до психології, безкоштовно.'},
+  {s:'courses',n:'Ed-Era',url:'https://ed-era.com',t:['курси','українською'],f:'платформа',p:'безкоштовно',d:'Якісні курси українською — підготовка до ЄВІ, профорієнтація та інші напрямки. Доступно 24/7.'},
+  {s:'courses',n:'NAQA — реєстр програм',url:'https://naqa.gov.ua',t:['курси'],f:'сайт',p:'безкоштовно',d:'Офіційний реєстр акредитованих освітніх програм України — перевірити легітимність закладу.'},
+  // МЕНТАЛЬНЕ
+  {s:'mental',n:'НПА — Реєстр психологів',url:'https://npa-ua.org/register/',t:['психологія','українською'],f:'сайт',p:'безкоштовно',d:'Офіційний реєстр Національної психологічної асоціації — всі члени мають підтверджену психологічну освіту або науковий ступінь. НПА — нац. представник України в EFPA.'},
+  {s:'mental',n:'УПА — Реєстр членів',url:'https://www.upa.guru/%D1%80%D0%B5%D1%94%D1%81%D1%82%D1%80-%D1%87%D0%BB%D0%B5%D0%BD%D1%96%D0%B2',t:['психологія','українською'],f:'сайт',p:'безкоштовно',d:'Реєстр Української психологічної асоціації — дійсні члени мають вищу психологічну освіту та досвід роботи в професії. Можна знайти і зв\'язатися напряму.'},
+  {s:'mental',n:'Гаряча лінія 1545',url:'tel:1545',t:['психологія','стрес','воєнний час','українською'],f:'гаряча лінія',p:'безкоштовно',d:'Урядова лінія психологічної підтримки 24/7 — безкоштовно для всіх українців.'},
+  {s:'mental',n:'Headspace',url:'https://headspace.com',t:['психологія','стрес'],f:'додаток',p:'частково',d:'Медитації, дихальні вправи, програми для сну — науково обґрунтований підхід до ментального здоров\'я.'},
+  {s:'mental',n:'Woebot',url:'https://woebot.io',t:['психологія','стрес','для початківців'],f:'додаток',p:'безкоштовно',d:'AI-бот на основі КПТ — допомагає з тривогою і негативними думками через короткі щоденні діалоги.'},
+  // ФІНАНСИ
+  {s:'finance',n:'Monefy',url:'https://monefy.me',t:['бюджет','для початківців'],f:'додаток',p:'безкоштовно',d:'Простий трекер витрат — звикнути вести бюджет за 5 хвилин на день. Відмінна точка старту.'},
+  {s:'finance',n:'Investopedia',url:'https://investopedia.com',t:['інвестиції','для початківців'],f:'сайт',p:'безкоштовно',d:'Найкращий словник фінансових понять — від акцій до криптовалюти. Перед будь-яким рішенням — заглянути сюди.'},
+  // МОЖЛИВОСТІ
+  {s:'opps',n:'Erasmus+',url:'https://erasmus.org.ua',t:['гранти','волонтерство','міжнародне визнання'],f:'сайт',p:'безкоштовно',d:'Обміни, волонтерство, молодіжні проєкти в Європі — більшість програм покривають витрати повністю.'},
+  {s:'opps',n:'Chevening',url:'https://chevening.org',t:['гранти','міжнародне визнання'],f:'сайт',p:'безкоштовно',d:'Стипендія уряду Великої Британії на магістратуру — повне фінансування: навчання, житло, квитки.'},
+  {s:'opps',n:'DAAD (для українців)',url:'https://daad.de/uk',t:['гранти','міжнародне визнання','воєнний час'],f:'сайт',p:'безкоштовно',d:'Стипендії та програми для українців у Германії — є спеціальні умови через воєнний стан.'},
+  {s:'opps',n:'Devpost',url:'https://devpost.com',t:['гранти','IT'],f:'сайт',p:'безкоштовно',d:'Платформа міжнародних хакатонів — змагання з призами, досвідом і нетворкінгом. Є онлайн-формат.'},
+];
 
-// ════════════════════════════════════════════
-//  РЕНДЕР КРОКІВ
-// ════════════════════════════════════════════
-function rInfo() {
-  return `<h1>${C.title}</h1>
-    <div class="ibox">
-      <p>Дякуємо за вашу участь!</p>
-      <p>Будь ласка, зверніть увагу: вся отримана інформація та ваші відповіді є суворо конфіденційними і не передаватимуться третім особам.</p>
-    </div>
-    <div class="nav"><button class="nb" id="btn-next">Розпочати →</button></div>`;
-}
+let curSec='all', curQF='all', curQ='';
 
-function rConsent() {
-  const on=S.consent;
-  return `<h2>Підтвердження згоди</h2>
-    <p class="sub">Натискаючи кнопку нижче, Ви підтверджуєте, що:</p>
-    <div class="ibox">
-      <p>• ознайомилися з інформацією про дослідження;</p>
-      <p>• розумієте свої права як учасника;</p>
-      <p>• добровільно погоджуєтеся на участь у дослідженні та обробку наданих Вами відповідей для наукових цілей.</p>
-    </div>
-    <label class="ccb${on?" on":""}">
-      <input type="checkbox" id="cb" ${on?"checked":""}>
-      <span>Я прочитав(ла) цю інформацію, мені все зрозуміло, і я добровільно погоджуюся взяти участь у дослідженні</span>
-    </label>
-    <div class="nav">
-      <button class="bb" id="btn-back">← Назад</button>
-      <button class="nb" id="btn-next" ${!on?"disabled":""}>Я згоден(на) взяти участь →</button>
-    </div>`;
-}
-
-function rg(name,opts,val) {
-  const hasErr=S.errs.has(name);
-  return `<div class="ropts">${opts.map(o=>`
-    <label class="ropt${val===o?" on":""}${hasErr?" bad":""}">
-      <input type="radio" name="${name}" value="${o}" ${val===o?"checked":""}> ${o}
-    </label>`).join("")}</div>
-    ${hasErr?`<p class="ferr">Будь ласка, оберіть відповідь</p>`:""}`;
-}
-
-function cg(name,opts,vals) {
-  return `<div class="ropts">${opts.map(o=>`
-    <label class="ropt${vals.includes(o)?" on":""}">
-      <input type="checkbox" name="${name}" value="${o}" ${vals.includes(o)?"checked":""}> ${o}
-    </label>`).join("")}</div>`;
-}
-
-function rDemo() {
-  const a=S.answers;
-  return `<h2>Загальна інформація</h2>
-    <p class="sub">Будь ласка, дайте відповідь на кілька запитань про себе.</p>
-    <div class="field"><label class="fl">До якої вікової групи Ви належите?<span class="req">*</span></label>${rg("age",C.ages,a.age)}</div>
-    <div class="field"><label class="fl">Як Ви себе ідентифікуєте?<span class="req">*</span></label>${rg("gender",C.genders,a.gender)}</div>
-    <div class="field"><label class="fl">Найвищий рівень освіти, який Ви здобули / здобуваєте?<span class="req">*</span></label>${rg("education",C.educations,a.education)}</div>
-    <div class="field"><label class="fl">Статус зайнятості <span style="font-weight:400;font-size:13px;color:#888780">(можна обрати декілька)</span></label>${cg("employment",C.employments,a.employment)}</div>
-    <div class="field"><label class="fl">Чи зверталися Ви по професійну психологічну або психіатричну допомогу?<span class="req">*</span></label>${rg("psychHelp",C.psychHelps,a.psychHelp)}</div>
-    <div class="field">
-      <label class="fl">Укажіть, будь ласка, Ваше поточне місце проживання або перебування<span class="req">*</span></label>
-      ${rg("location",C.locations,a.location)}
-      ${a.location ? `
-        <div style="margin-top:10px">
-          <label class="fl" style="font-weight:400;font-size:13px;color:#444">
-            ${a.location===C.locationUkraine ? "Яке місто?" : "Яка країна?"}
-          </label>
-          <input type="text" id="locationDetail"
-            value="${a.locationDetail||""}"
-            placeholder="${a.location===C.locationUkraine ? "Наприклад: Київ" : a.location==="Інші країни Європи" ? "Наприклад: Велика Британія" : a.location==="США або Канада" ? "Наприклад: США" : a.location==="Азія" ? "Наприклад: Японія" : "Наприклад: Австралія"}"
-            style="width:100%;padding:9px 12px;border:0.5px solid ${S.errs.has('locationDetail')?'#a32d2d':'#d3d1c7'};border-radius:8px;font-size:14px;outline:none;background:#fff;color:#1a1a1a"
-          />
-          ${S.errs.has('locationDetail')?`<p class="ferr">Будь ласка, заповніть це поле</p>`:""}
-        </div>
-      ` : ""}
-    </div>
-    ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі обов'язкові запитання</p>`:""}
-    <div class="nav">
-      <button class="bb" id="btn-back">← Назад</button>
-      <button class="nb" id="btn-next">Далі →</button>
-    </div>`;
-}
-
-function rItem(item,bkey,num) {
-  const block=C[bkey];
-  const val=S.answers[item.id];
-  const hasErr=S.errs.has(item.id);
-  const labs=block.scaleLabels;
-  const btns=Array.from({length:block.max},(_,i)=>i+1).map(n=>
-    `<button class="sbtn${val===n?" on":""}" data-id="${item.id}" data-v="${n}">${n}</button>`
-  ).join("");
-  return `<div class="qcard${hasErr?" bad":""}" id="qc-${item.id}">
-    <p class="qnum">Твердження ${num}</p>
-    <p class="qtext">${item.text}</p>
-    <div class="srow">${btns}</div>
-    <div class="slabs"><span>${labs[0]}</span><span>${labs[labs.length-1]}</span></div>
-    ${hasErr?`<p class="qerr">Будь ласка, оберіть відповідь</p>`:""}
-  </div>`;
-}
-
-function rBlock(bkey) {
-  const cfg=C[bkey];
-  const isLast=bkey==="wemwbs";
-  const titles={tipi:"TIPI-UKR",k10:"K10",wemwbs:"WEMWBS"};
-  return `<h2>${titles[bkey]}</h2>
-    <p class="sub">${bkey==="tipi"?C.tipi.prefix:cfg.instruction}</p>
-    ${bkey==="tipi"?`<div class="note">${C.tipi.instruction}</div>`:""}
-    ${cfg.items.map((item,i)=>rItem(item,bkey,i+1)).join("")}
-    ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі запитання</p>`:""}
-    <div class="nav">
-      <button class="bb" id="btn-back">← Назад</button>
-      <button class="nb" id="btn-next" ${S.submitting?"disabled":""}>
-        ${isLast?(S.submitting?"Збереження...":"Надіслати відповіді →"):"Далі →"}
-      </button>
-    </div>`;
-}
-
-function rOut() {
-  return `<div class="end"><div class="eicon">🙏</div>
-    <h2>Дякуємо за інтерес!</h2>
-    <p>На жаль, це дослідження розраховане на учасників вікової групи 18–29 років. Ми цінуємо вашу готовність допомогти!</p>
-  </div>`;
-}
-
-function rDone() {
-  return `<div class="end"><div class="eicon">✅</div>
-    <h2>Дякуємо за участь!</h2>
-    <p>Ваші відповіді успішно збережено та будуть використані в науковій роботі.</p>
-    ${C.resourceUrl?`<a class="rbtn" href="${C.resourceUrl}" target="_blank" rel="noopener">↗ ${C.resourceText}</a>`:""}
-  </div>`;
-}
-
-// ════════════════════════════════════════════
-//  ГОЛОВНИЙ РЕНДЕР
-// ════════════════════════════════════════════
-function render() {
-  const app=document.getElementById("app");
-  const s=S.step;
-  if(s==="out")  { app.innerHTML=rOut();  return; }
-  if(s==="done") { app.innerHTML=rDone(); return; }
-  const map={info:rInfo,consent:rConsent,demo:rDemo,
-             tipi:()=>rBlock("tipi"),k10:()=>rBlock("k10"),wemwbs:()=>rBlock("wemwbs")};
-  app.innerHTML=renderProgress()+(map[s]?map[s]():"");
-  attachListeners();
-}
-
-// ════════════════════════════════════════════
-//  СЛУХАЧІ
-// ════════════════════════════════════════════
-function attachListeners() {
-  document.getElementById("btn-next")?.addEventListener("click",handleNext);
-  document.getElementById("btn-back")?.addEventListener("click",handleBack);
-  document.getElementById("cb")?.addEventListener("change",e=>{S.consent=e.target.checked;render();});
-  document.querySelectorAll('input[type="radio"]').forEach(el=>{
-    el.addEventListener("change",e=>{
-      S.answers[e.target.name]=e.target.value;
-      // Скинути locationDetail при зміні регіону
-      if(e.target.name==="location") S.answers.locationDetail="";
-      S.errs.delete(e.target.name);
-      S.errs.delete("locationDetail");
-      S.blockErr=false;
-      render();
+function init(){
+  buildNav();
+  buildCards();
+  // Quick filters
+  document.getElementById('qfs').querySelectorAll('.qf').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.qf').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on'); curQF=b.dataset.q; buildCards();
     });
   });
-  document.querySelectorAll('input[type="checkbox"][name="employment"]').forEach(el=>{
-    el.addEventListener("change",e=>{
-      if(e.target.checked){if(!S.answers.employment.includes(e.target.value))S.answers.employment.push(e.target.value);}
-      else{S.answers.employment=S.answers.employment.filter(v=>v!==e.target.value);}
-      render();
-    });
-  });
-  // Текстове поле для міста / країни — без ре-рендеру, просто зберігаємо
-  document.getElementById("locationDetail")?.addEventListener("input",e=>{
-    S.answers.locationDetail=e.target.value;
-    S.errs.delete("locationDetail");
-  });
-  document.querySelectorAll(".sbtn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      const id=btn.dataset.id,v=parseInt(btn.dataset.v);
-      const sy=document.documentElement.scrollTop||document.body.scrollTop||0;
-      S.answers[id]=v;
-      S.errs.delete(id);
-      if(S.blockErr&&C[S.step].items.every(i=>S.answers[i.id]!==undefined))S.blockErr=false;
-      render();
-      requestAnimationFrame(()=>{document.documentElement.scrollTop=sy;document.body.scrollTop=sy;});
-    });
-  });
+  // Search
+  // Modal
+  document.getElementById('mclose').addEventListener('click',closeM);
+  document.getElementById('mover').addEventListener('click',e=>{if(e.target===e.currentTarget)closeM();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 }
 
-// ════════════════════════════════════════════
-//  НАВІГАЦІЯ
-// ════════════════════════════════════════════
-const STEPS=["info","consent","demo","tipi","k10","wemwbs","done"];
-
-function scrollTop(){
-  setTimeout(()=>{
-    try{window.scrollTo(0,0);}catch(e){}
-    try{document.documentElement.scrollTop=0;}catch(e){}
-    try{document.body.scrollTop=0;}catch(e){}
-  },20);
-}
-
-function handleBack(){
-  const i=STEPS.indexOf(S.step);
-  if(i>0){S.step=STEPS[i-1];S.errs=new Set();S.blockErr=false;render();scrollTop();}
-}
-
-function scrollToErr(){
-  setTimeout(()=>{
-    const el=document.querySelector(".bad,.berr,.qcard.bad");
-    if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
-  },50);
-}
-
-function handleNext(){
-  S.blockErr=false;
-  const s=S.step;
-  if(s==="info"){S.step="consent";render();scrollTop();return;}
-  if(s==="consent"){if(!S.consent)return;S.step="demo";render();scrollTop();return;}
-  if(s==="demo"){
-    const missing=new Set(["age","gender","education","psychHelp","location"].filter(f=>!S.answers[f]));
-    if(S.answers.location && !S.answers.locationDetail.trim()) missing.add("locationDetail");
-    if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
-    if(S.answers.age!==C.allowedAge){S.step="out";render();scrollTop();return;}
-    S.step="tipi";render();scrollTop();return;
+function buildNav(){
+  const nav=document.getElementById('snav');
+  let h=`<button class="sp on" data-s="all" style="">✨ Всі</button>`;
+  for(const[k,v] of Object.entries(SEC)){
+    h+=`<button class="sp" data-s="${k}" style="color:${v.color}88">${v.label}</button>`;
   }
-  if(["tipi","k10","wemwbs"].includes(s)){
-    const items=C[s].items;
-    const missing=new Set(items.filter(i=>S.answers[i.id]===undefined).map(i=>i.id));
-    if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
-    if(s==="wemwbs"){submitData();return;}
-    S.step=STEPS[STEPS.indexOf(s)+1];render();scrollTop();return;
-  }
-}
-
-// ════════════════════════════════════════════
-//  ПІДРАХУНОК
-// ════════════════════════════════════════════
-function calcTIPI(){
-  const max=C.tipi.max,out={};
-  Object.entries(C.tipi.subscales).forEach(([name,sub])=>{
-    const vals=sub.items.map(id=>{
-      const v=S.answers[id];
-      return v===undefined?null:(sub.rev.includes(id)?(max+1-v):v);
-    }).filter(v=>v!==null);
-    out[`tipi_${name}`]=vals.length===2?parseFloat(((vals[0]+vals[1])/2).toFixed(2)):null;
+  nav.innerHTML=h;
+  nav.querySelectorAll('.sp').forEach(b=>{
+    b.addEventListener('click',()=>{
+      nav.querySelectorAll('.sp').forEach(x=>{x.classList.remove('on');x.style.background='';x.style.borderColor='';x.style.color=SEC[x.dataset.s]?.color+'88'||'';});
+      b.classList.add('on');
+      if(b.dataset.s!=='all'){const c=SEC[b.dataset.s].color;b.style.background=c+'22';b.style.borderColor=c+'55';b.style.color=c;}
+      else{b.style.background='rgba(255,255,255,0.15)';b.style.borderColor='rgba(255,255,255,0.3)';b.style.color='#fff';}
+      curSec=b.dataset.s; buildCards();
+    });
   });
-  return out;
+  // init "all" active style
+  nav.querySelector('[data-s="all"]').style.cssText='background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:#fff';
 }
 
-function calcK10(){
-  const total=C.k10.items.reduce((s,i)=>s+(S.answers[i.id]||0),0);
-  const cat=total<=19?"Стресостійкий (10–19)":total<=24?"Помірний (20–24)":total<=29?"Значний (25–29)":"Тяжкий (30–50)";
-  return {k10_total:total,k10_category:cat};
+function filter(){
+  return RES.filter(r=>{
+    if(curSec!=='all'&&r.s!==curSec)return false;
+    if(curQF==='free'&&r.p!=='безкоштовно')return false;
+    if(curQF==='beg'&&!r.t.includes('для початківців'))return false;
+    if(curQF==='ua'&&!r.t.includes('українською'))return false;
+    if(curQF==='cert'&&!r.t.includes('сертифікат'))return false;
+    if(curQ){const q=curQ.toLowerCase();if(!r.n.toLowerCase().includes(q)&&!r.d.toLowerCase().includes(q)&&!r.t.some(x=>x.includes(q)))return false;}
+    return true;
+  });
 }
 
-function calcWEMWBS(){
-  const total=C.wemwbs.items.reduce((s,i)=>s+(S.answers[i.id]||0),0);
-  const cat=total<41?"Нижче середнього (<41)":total<=45?"Середній (41–45)":"Вище середнього (>45)";
-  return {wemwbs_total:total,wemwbs_category:cat};
+function buildCards(){
+  const grid=document.getElementById('grid');
+  const info=document.getElementById('rinfo');
+  const list=filter();
+  info.textContent=list.length?`Знайдено ${list.length} ресурс${list.length===1?'':'ів'}`:'';
+  if(!list.length){grid.innerHTML=`<div class="empty"><div class="empty-ico">🔍</div><h3>Нічого не знайдено</h3><p style="color:var(--text-3);font-size:13px;margin-top:6px">Спробуй змінити фільтри або пошуковий запит</p></div>`;return;}
+  grid.innerHTML=list.map((r,i)=>{
+    const sec=SEC[r.s];
+    const pc=r.p==='безкоштовно'?'bfree':r.p==='частково'?'bpart':'bpaid';
+    const btn=r.g
+      ?`<button class="cbtn" onclick="openG('${r.g}')">Відкрити гайд ↗</button>`
+      :`<a class="cbtn" href="${r.url}" target="_blank" rel="noopener">Перейти →</a>`;
+    return `<div class="card" style="--ac:${sec.color};animation-delay:${i*.035}s">
+      <div class="ctop">
+        <div class="cicon">${sec.label.split(' ')[0]}</div>
+        <div class="cbadges"><span class="b bfmt">${r.f}</span><span class="b ${pc}">${r.p}</span></div>
+      </div>
+      <div class="ctitle">${r.n}</div>
+      <div class="cdesc">${r.d}</div>
+      <div class="ctags">${r.t.map(x=>`<span class="tag" onclick="tagFilter('${x}')">${x}</span>`).join('')}</div>
+      <div class="cfoot">${btn}</div>
+    </div>`;
+  }).join('');
 }
 
-// ════════════════════════════════════════════
-//  ЯКІСТЬ ДАНИХ
-// ════════════════════════════════════════════
-function isStraightLine(ids){
-  const vals=ids.map(id=>S.answers[id]).filter(v=>v!==undefined);
-  return vals.length>=6 && vals.every(v=>v===vals[0]);
+function openG(k){
+  const g=GUIDES[k]; if(!g)return;
+  document.getElementById('mc').innerHTML=g.html;
+  const m=document.getElementById('mover');
+  m.style.display='flex'; setTimeout(()=>m.style.opacity=1,10);
+  document.body.style.overflow='hidden';
+}
+function closeM(){
+  const m=document.getElementById('mover');
+  m.style.opacity=0; setTimeout(()=>{m.style.display='none';},200);
+  document.body.style.overflow='';
+}
+function tagFilter(tag){
+  curQ=tag; buildCards();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function detectContradictions(){
-  const a=S.answers;
-
-  // ── TIPI: різниця між пунктами підшкали після реверсування ≥ 4 ──
-  // Якщо два пункти підшкали сильно розходяться — внутрішня суперечність
-  const tipiRev=["tipi_2","tipi_4","tipi_6","tipi_8","tipi_10"];
-  const score=id=>tipiRev.includes(id)?(8-a[id]):a[id];
-  const tipiPairs=[
-    ["tipi_1","tipi_6"],  // Екстраверсія
-    ["tipi_2","tipi_7"],  // Дружелюбність
-    ["tipi_3","tipi_8"],  // Добросовісність
-    ["tipi_4","tipi_9"],  // Емоційна стабільність
-    ["tipi_5","tipi_10"], // Відкритість
-  ];
-  const tipiContr=tipiPairs.filter(([a1,a2])=>Math.abs(score(a1)-score(a2))>=4).length;
-
-  // ── K10: логічна ієрархія — більш інтенсивний симптом ≤ загального ──
-  // k10_3 (неможливо заспокоїти) не може бути > k10_2 (нервовість загалом)
-  // k10_6 (не міг всидіти) не може бути > k10_5 (неспокій загалом)
-  // k10_9 (ніщо не підбадьорить) не може бути > k10_7 (пригніченість загалом)
-  let k10Contr=0;
-  if(a.k10_3>a.k10_2) k10Contr++;
-  if(a.k10_6>a.k10_5) k10Contr++;
-  if(a.k10_9>a.k10_7) k10Contr++;
-
-  // ── WEMWBS: семантично близькі пари — різниця ≥ 3 на шкалі 1–5 ──
-  // w_5 (енергія) і w_14 (бадьорість) — майже те саме
-  // w_7 (ясне мислення) і w_11 (самостійні рішення) — когнітивне функціонування
-  // w_1 (оптимізм) і w_8 (добре себе почуваю) — загальний позитивний афект
-  let wContr=0;
-  if(Math.abs(a.w_5-a.w_14)>=3) wContr++;
-  if(Math.abs(a.w_7-a.w_11)>=3) wContr++;
-  if(Math.abs(a.w_1-a.w_8)>=3)  wContr++;
-
-  return {
-    contr_tipi:tipiContr,       // к-сть суперечливих підшкал TIPI (0–5)
-    contr_tipi_flag:tipiContr>=2?1:0,
-    contr_k10:k10Contr,         // к-сть порушень ієрархії K10 (0–3)
-    contr_k10_flag:k10Contr>=2?1:0,
-    contr_wemwbs:wContr,        // к-сть суперечливих пар WEMWBS (0–3)
-    contr_wemwbs_flag:wContr>=2?1:0,
-  };
-}
-
-// ════════════════════════════════════════════
-//  ЗБЕРЕЖЕННЯ
-// ════════════════════════════════════════════
-async function submitData(){
-  S.submitting=true;render();
-  const raw={};
-  [...C.tipi.items,...C.k10.items,...C.wemwbs.items].forEach(i=>{raw[i.id]=S.answers[i.id];});
-
-  const slTipi  =isStraightLine(C.tipi.items.map(i=>i.id));
-  const slK10   =isStraightLine(C.k10.items.map(i=>i.id));
-  const slWemwbs=isStraightLine(C.wemwbs.items.map(i=>i.id));
-  const contr   =detectContradictions();
-
-  const anyFlag=slTipi||slK10||slWemwbs||contr.contr_tipi_flag||contr.contr_k10_flag||contr.contr_wemwbs_flag;
-
-  const payload={
-    timestamp:new Date().toISOString(),
-    age:S.answers.age, gender:S.answers.gender,
-    education:S.answers.education,
-    employment:S.answers.employment.join(", "),
-    psychHelp:S.answers.psychHelp,
-    location:S.answers.location,
-    locationDetail:S.answers.locationDetail,
-    ...raw,
-    sl_tipi:slTipi?1:0,
-    sl_k10:slK10?1:0,
-    sl_wemwbs:slWemwbs?1:0,
-    ...contr,
-    data_quality:anyFlag?"⚠️ ПЕРЕВІРИТИ":"✅ OK",
-    ...calcTIPI(),
-    ...calcK10(),
-    ...calcWEMWBS()
-  };
-  try{
-    if(C.scriptUrl&&!C.scriptUrl.includes("ВСТАВТЕ")){
-      await fetch(C.scriptUrl,{method:"POST",mode:"no-cors",
-        headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)});
-    }
-  }catch(e){console.error(e);}
-  S.submitting=false;S.step="done";render();
-}
-
-render();
+init();
 </script>
 </body>
 </html>
