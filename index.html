@@ -77,8 +77,8 @@ const C = {
   locations:["Україна","Інші країни Європи","США або Канада","Азія","Інший регіон"],
   locationUkraine:"Україна",
 
-  steps:["info","consent","demo","tipi","k10","wemwbs","done"],
-  stepLabels:["Інформація","Згода","Про вас","TIPI","K10","WEMWBS","Завершено"],
+  steps:["info","consent","demo","tipi","k10","cope","done"],
+  stepLabels:["Інформація","Згода","Про вас","TIPI","K10","Brief COPE","Завершено"],
 
   tipi:{
     instruction:"Нижче наведено перелік якостей, які можуть бути або не бути характерними для Вас. Оцініть, в якій мірі запропонована пара характеристик стосується Вас особисто, навіть якщо одна підходить більше, аніж друга.",
@@ -125,26 +125,55 @@ const C = {
     ]
   },
 
-  wemwbs:{
-    instruction:"Нижче наведено кілька тверджень про Ваші почуття та думки. Будь ласка, позначте цифру, яка найкраще описує Ваш досвід протягом останніх двох тижнів.",
-    scaleLabels:["Ніколи","Рідко","Іноді","Часто","Весь час"],
-    max:5,
+  cope:{
+    instruction:"У наступних твердженнях йдеться про різні шляхи подолання життєвих труднощів. Прочитайте наведені твердження та вкажіть, як часто Ви користувалися кожним способом подолання проблем.",
+    scaleNote:"1 — Ніколи &nbsp;·&nbsp; 2 — Дуже рідко &nbsp;·&nbsp; 3 — Іноді &nbsp;·&nbsp; 4 — Часто",
+    scaleLabels:["Ніколи так не роблю","Часто так роблю"],
+    max:4,
     items:[
-      {id:"w_1", text:"Я з оптимізмом дивлюся в майбутнє"},
-      {id:"w_2", text:"Я відчуваю себе корисним(-ою)"},
-      {id:"w_3", text:"Я почуваюся розслабленим(-ою)"},
-      {id:"w_4", text:"Мене цікавлять інші люди"},
-      {id:"w_5", text:"У мене достатньо енергії"},
-      {id:"w_6", text:"Я добре справляюся з проблемами"},
-      {id:"w_7", text:"Я мислю ясно"},
-      {id:"w_8", text:"Я добре себе почуваю"},
-      {id:"w_9", text:"Я відчуваю близькість до інших людей"},
-      {id:"w_10",text:"Я впевнений(-а) в собі"},
-      {id:"w_11",text:"Я можу самостійно приймати рішення"},
-      {id:"w_12",text:"Я відчуваю, що мене люблять"},
-      {id:"w_13",text:"Я цікавлюся новими речами"},
-      {id:"w_14",text:"Я почуваюся бадьорим(-ою)"},
-    ]
+      {id:"cope_1", text:"Я докладаю багато зусиль для того, щоб змінити ситуацію, в якій я опинився(-лась)."},
+      {id:"cope_2", text:"Я активно вживаю заходів, щоб покращити ситуацію."},
+      {id:"cope_3", text:"Я намагаюся розробити стратегію подальших дій."},
+      {id:"cope_4", text:"Я ретельно розмірковую над наступними кроками."},
+      {id:"cope_5", text:"Я намагаюся дивитись на події в іншому, більш позитивному, світлі."},
+      {id:"cope_6", text:"Я намагаюся знайти щось хороше в тому, що відбувається."},
+      {id:"cope_7", text:"Я приймаю реальність тих обставин, які вже сталися."},
+      {id:"cope_8", text:"Я намагаюся навчитися жити далі з тим, що є."},
+      {id:"cope_9", text:"Я жартую з цього приводу."},
+      {id:"cope_10",text:"Я висміюю ситуацію, що сталася."},
+      {id:"cope_11",text:"Я намагаюся знайти відраду в релігії чи духовних переконаннях."},
+      {id:"cope_12",text:"Я молюся або медитую."},
+      {id:"cope_13",text:"Я намагаюся отримати емоційну підтримку від інших."},
+      {id:"cope_14",text:"Я намагаюсь отримати співчуття та розуміння від інших."},
+      {id:"cope_15",text:"Я звертаюся за порадою або допомогою до інших людей щодо подальших дій."},
+      {id:"cope_16",text:"Я намагаюсь отримати реальну допомогу та поради від інших людей."},
+      {id:"cope_17",text:"Я намагаюся запевнити себе, що «це не насправді»."},
+      {id:"cope_18",text:"Я відмовляюся до кінця повірити в те, що це сталося насправді."},
+      {id:"cope_19",text:"Я ділюся своїми неприємними почуттями, щоб дати їм волю."},
+      {id:"cope_20",text:"Я виражаю свої негативні почуття."},
+      {id:"cope_21",text:"Я вживаю алкоголь або інші наркотичні речовини, щоб почуватися краще."},
+      {id:"cope_22",text:"Я вживаю алкоголь або інші наркотичні речовини, щоб впоратися з проблемою."},
+      {id:"cope_23",text:"Я полишаю марні спроби справитися з проблемою."},
+      {id:"cope_24",text:"Я відмовляюся від надмірних зусиль щодо подолання проблеми."},
+      {id:"cope_25",text:"Я критикую себе."},
+      {id:"cope_26",text:"Я звинувачую себе в тому, що сталося."},
+    ],
+    // Ключ: кожна субшкала = сума двох пунктів (діапазон 2–8)
+    subscales:{
+      C1:{name:"Активне подолання",            items:["cope_1","cope_2"]},
+      C2:{name:"Планування",                   items:["cope_3","cope_4"]},
+      C3:{name:"Позитивне переосмислення",     items:["cope_5","cope_6"]},
+      C4:{name:"Прийняття",                    items:["cope_7","cope_8"]},
+      C5:{name:"Гумор",                        items:["cope_9","cope_10"]},
+      C6:{name:"Звернення до релігії",         items:["cope_11","cope_12"]},
+      C7:{name:"Емоційна підтримка",           items:["cope_13","cope_14"]},
+      C8:{name:"Інструментальна підтримка",    items:["cope_15","cope_16"]},
+      C9:{name:"Заперечення",                  items:["cope_17","cope_18"]},
+      C10:{name:"Вираження почуттів",          items:["cope_19","cope_20"]},
+      C11:{name:"Вживання ПАР",               items:["cope_21","cope_22"]},
+      C12:{name:"Поведінковий відхід",         items:["cope_23","cope_24"]},
+      C13:{name:"Самозвинувачення",            items:["cope_25","cope_26"]},
+    }
   }
 };
 
@@ -286,11 +315,13 @@ function rItem(item,bkey,num) {
 
 function rBlock(bkey) {
   const cfg=C[bkey];
-  const isLast=bkey==="wemwbs";
-  const titles={tipi:"TIPI-UKR",k10:"K10",wemwbs:"WEMWBS"};
+  const isLast=bkey==="cope";
+  const titles={tipi:"TIPI-UKR",k10:"K10",cope:"Brief COPE-26"};
+  const copeNote=bkey==="cope"?`<div class="note" style="text-align:center">${C.cope.scaleNote}</div>`:"";
   return `<h2>${titles[bkey]}</h2>
     <p class="sub">${bkey==="tipi"?C.tipi.prefix:cfg.instruction}</p>
     ${bkey==="tipi"?`<div class="note">${C.tipi.instruction}</div>`:""}
+    ${copeNote}
     ${cfg.items.map((item,i)=>rItem(item,bkey,i+1)).join("")}
     ${S.blockErr?`<p class="berr">Будь ласка, дайте відповідь на всі запитання</p>`:""}
     <div class="nav">
@@ -325,7 +356,7 @@ function render() {
   if(s==="out")  { app.innerHTML=rOut();  return; }
   if(s==="done") { app.innerHTML=rDone(); return; }
   const map={info:rInfo,consent:rConsent,demo:rDemo,
-             tipi:()=>rBlock("tipi"),k10:()=>rBlock("k10"),wemwbs:()=>rBlock("wemwbs")};
+             tipi:()=>rBlock("tipi"),k10:()=>rBlock("k10"),cope:()=>rBlock("cope")};
   app.innerHTML=renderProgress()+(map[s]?map[s]():"");
   attachListeners();
 }
@@ -382,7 +413,7 @@ function attachListeners() {
 // ════════════════════════════════════════════
 //  НАВІГАЦІЯ
 // ════════════════════════════════════════════
-const STEPS=["info","consent","demo","tipi","k10","wemwbs","done"];
+const STEPS=["info","consent","demo","tipi","k10","cope","done"];
 
 function scrollTop(){
   setTimeout(()=>{
@@ -406,25 +437,21 @@ function scrollToErr(){
 
 function scrollToNextUnanswered(currentId){
   const bkey=S.step;
-  if(!["tipi","k10","wemwbs"].includes(bkey)) return;
+  if(!["tipi","k10","cope"].includes(bkey)) return;
   const items=C[bkey].items;
   const curIdx=items.findIndex(i=>i.id===currentId);
-
-  // Шукаємо перше порожнє ПІСЛЯ поточного
   for(let i=curIdx+1;i<items.length;i++){
     if(S.answers[items[i].id]===undefined){
       const el=document.getElementById("qc-"+items[i].id);
       if(el){el.scrollIntoView({behavior:"smooth",block:"center"});return;}
     }
   }
-  // Якщо після немає — шукаємо від початку до поточного
   for(let i=0;i<curIdx;i++){
     if(S.answers[items[i].id]===undefined){
       const el=document.getElementById("qc-"+items[i].id);
       if(el){el.scrollIntoView({behavior:"smooth",block:"center"});return;}
     }
   }
-  // Всі заповнені — скролимо до кнопки "Далі"
   const nav=document.querySelector(".nav");
   if(nav) nav.scrollIntoView({behavior:"smooth",block:"center"});
 }
@@ -441,11 +468,11 @@ function handleNext(){
     if(S.answers.age!==C.allowedAge){S.step="out";render();scrollTop();return;}
     S.step="tipi";render();scrollTop();return;
   }
-  if(["tipi","k10","wemwbs"].includes(s)){
+  if(["tipi","k10","cope"].includes(s)){
     const items=C[s].items;
     const missing=new Set(items.filter(i=>S.answers[i.id]===undefined).map(i=>i.id));
     if(missing.size){S.errs=missing;S.blockErr=true;render();scrollToErr();return;}
-    if(s==="wemwbs"){submitData();return;}
+    if(s==="cope"){submitData();return;}
     S.step=STEPS[STEPS.indexOf(s)+1];render();scrollTop();return;
   }
 }
@@ -471,10 +498,17 @@ function calcK10(){
   return {k10_total:total,k10_category:cat};
 }
 
-function calcWEMWBS(){
-  const total=C.wemwbs.items.reduce((s,i)=>s+(S.answers[i.id]||0),0);
-  const cat=total<41?"Нижче середнього (<41)":total<=45?"Середній (41–45)":"Вище середнього (>45)";
-  return {wemwbs_total:total,wemwbs_category:cat};
+function calcCOPE(){
+  const out={};
+  // Субшкали: сума двох пунктів (діапазон 2–8)
+  Object.entries(C.cope.subscales).forEach(([key,sub])=>{
+    out[`cope_${key}`]=sub.items.reduce((s,id)=>s+(S.answers[id]||0),0);
+  });
+  // Фактори вищого порядку
+  out.cope_ПК=out.cope_C1+out.cope_C2+out.cope_C3;           // Проблемно-орієнтований
+  out.cope_ЕК=out.cope_C7+out.cope_C8+out.cope_C10;          // Емоційно-орієнтований
+  out.cope_УК=out.cope_C9+out.cope_C12+out.cope_C13;         // Уникаючий
+  return out;
 }
 
 // ════════════════════════════════════════════
@@ -489,43 +523,35 @@ function detectContradictions(){
   const a=S.answers;
 
   // ── TIPI: різниця між пунктами підшкали після реверсування ≥ 4 ──
-  // Якщо два пункти підшкали сильно розходяться — внутрішня суперечність
   const tipiRev=["tipi_2","tipi_4","tipi_6","tipi_8","tipi_10"];
   const score=id=>tipiRev.includes(id)?(8-a[id]):a[id];
   const tipiPairs=[
-    ["tipi_1","tipi_6"],  // Екстраверсія
-    ["tipi_2","tipi_7"],  // Дружелюбність
-    ["tipi_3","tipi_8"],  // Добросовісність
-    ["tipi_4","tipi_9"],  // Емоційна стабільність
-    ["tipi_5","tipi_10"], // Відкритість
+    ["tipi_1","tipi_6"],["tipi_2","tipi_7"],["tipi_3","tipi_8"],
+    ["tipi_4","tipi_9"],["tipi_5","tipi_10"],
   ];
   const tipiContr=tipiPairs.filter(([a1,a2])=>Math.abs(score(a1)-score(a2))>=4).length;
 
-  // ── K10: логічна ієрархія — більш інтенсивний симптом ≤ загального ──
-  // k10_3 (неможливо заспокоїти) не може бути > k10_2 (нервовість загалом)
-  // k10_6 (не міг всидіти) не може бути > k10_5 (неспокій загалом)
-  // k10_9 (ніщо не підбадьорить) не може бути > k10_7 (пригніченість загалом)
+  // ── K10: логічна ієрархія ──
   let k10Contr=0;
   if(a.k10_3>a.k10_2) k10Contr++;
   if(a.k10_6>a.k10_5) k10Contr++;
   if(a.k10_9>a.k10_7) k10Contr++;
 
-  // ── WEMWBS: семантично близькі пари — різниця ≥ 3 на шкалі 1–5 ──
-  // w_5 (енергія) і w_14 (бадьорість) — майже те саме
-  // w_7 (ясне мислення) і w_11 (самостійні рішення) — когнітивне функціонування
-  // w_1 (оптимізм) і w_8 (добре себе почуваю) — загальний позитивний афект
-  let wContr=0;
-  if(Math.abs(a.w_5-a.w_14)>=3) wContr++;
-  if(Math.abs(a.w_7-a.w_11)>=3) wContr++;
-  if(Math.abs(a.w_1-a.w_8)>=3)  wContr++;
+  // ── Brief COPE: внутрішньосубшкальна суперечність ≥ 2 балів (шкала 1–4) ──
+  // Два пункти кожної субшкали вимірюють одне й те саме — великий розрив підозрілий
+  let copeContr=0;
+  Object.values(C.cope.subscales).forEach(sub=>{
+    const [id1,id2]=sub.items;
+    if(Math.abs((a[id1]||0)-(a[id2]||0))>=2) copeContr++;
+  });
 
   return {
-    contr_tipi:tipiContr,       // к-сть суперечливих підшкал TIPI (0–5)
+    contr_tipi:tipiContr,
     contr_tipi_flag:tipiContr>=2?1:0,
-    contr_k10:k10Contr,         // к-сть порушень ієрархії K10 (0–3)
+    contr_k10:k10Contr,
     contr_k10_flag:k10Contr>=2?1:0,
-    contr_wemwbs:wContr,        // к-сть суперечливих пар WEMWBS (0–3)
-    contr_wemwbs_flag:wContr>=2?1:0,
+    contr_cope:copeContr,           // к-сть субшкал COPE із суперечністю (0–13)
+    contr_cope_flag:copeContr>=5?1:0,
   };
 }
 
@@ -535,14 +561,14 @@ function detectContradictions(){
 async function submitData(){
   S.submitting=true;render();
   const raw={};
-  [...C.tipi.items,...C.k10.items,...C.wemwbs.items].forEach(i=>{raw[i.id]=S.answers[i.id];});
+  [...C.tipi.items,...C.k10.items,...C.cope.items].forEach(i=>{raw[i.id]=S.answers[i.id];});
 
-  const slTipi  =isStraightLine(C.tipi.items.map(i=>i.id));
-  const slK10   =isStraightLine(C.k10.items.map(i=>i.id));
-  const slWemwbs=isStraightLine(C.wemwbs.items.map(i=>i.id));
-  const contr   =detectContradictions();
+  const slTipi =isStraightLine(C.tipi.items.map(i=>i.id));
+  const slK10  =isStraightLine(C.k10.items.map(i=>i.id));
+  const slCope =isStraightLine(C.cope.items.map(i=>i.id));
+  const contr  =detectContradictions();
 
-  const anyFlag=slTipi||slK10||slWemwbs||contr.contr_tipi_flag||contr.contr_k10_flag||contr.contr_wemwbs_flag;
+  const anyFlag=slTipi||slK10||slCope||contr.contr_tipi_flag||contr.contr_k10_flag||contr.contr_cope_flag;
 
   const endTime=new Date();
   const durationMin=((endTime-SESSION_START)/60000).toFixed(1);
@@ -561,12 +587,12 @@ async function submitData(){
     ...raw,
     sl_tipi:slTipi?1:0,
     sl_k10:slK10?1:0,
-    sl_wemwbs:slWemwbs?1:0,
+    sl_cope:slCope?1:0,
     ...contr,
     data_quality:anyFlag?"⚠️ ПЕРЕВІРИТИ":"✅ OK",
     ...calcTIPI(),
     ...calcK10(),
-    ...calcWEMWBS()
+    ...calcCOPE()
   };
   try{
     if(C.scriptUrl&&!C.scriptUrl.includes("ВСТАВТЕ")){
